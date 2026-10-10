@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Buchanans.vcxproj" />
+  <Project Path="Buchanans.vcxproj" Id="0a9ee656-1be9-418c-a789-f80615061ace" />
 </Solution>

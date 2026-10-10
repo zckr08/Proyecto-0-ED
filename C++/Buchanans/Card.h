@@ -44,7 +44,7 @@ public:
 			if (up) {
 				if (numero >= 2 && numero < 10) {
 					cout << "+-------+" << "\n";
-					cout << "|" << numero << "     " << tipoPalo << " | " << "\n";
+					cout << "|" << numero << "    " << tipoPalo << " | " << "\n";
 					cout << "|       |" << "\n";
 					cout << "|   " << tipoPalo << "   |" << "\n";
 					cout << "|       |" << "\n";
@@ -54,7 +54,7 @@ public:
 
 				else if (numero == 10) {
 					cout << "+-------+" << "\n";
-					cout << "|" << numero << "     " << tipoPalo << " | " << "\n";
+					cout << "|" << numero << "   " << tipoPalo << " | " << "\n";
 					cout << "|       |" << "\n";
 					cout << "|   " << tipoPalo << "   |" << "\n";
 					cout << "|       |" << "\n";
@@ -87,7 +87,7 @@ public:
 				cout << "|       |" << "\n";
 				cout << "|       |" << "\n";
 				cout << "|       |" << "\n";
-				cout << "|      " << "\xE9\xBE\x8D" << "|" << "\n";
+				cout << "|     " << "\xE9\xBE\x8D" << "|" << "\n";
 				cout << "+-------+" << "\n";
 			}
 		}
