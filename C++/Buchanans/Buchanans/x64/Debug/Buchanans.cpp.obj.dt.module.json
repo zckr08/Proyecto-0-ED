@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Buchanans\\x64\\Debug\\Buchanans.obj",
+            "outputs": [
+                "Buchanans\\x64\\Debug\\Buchanans.cpp.obj.dt.module.json",
+                "Buchanans\\x64\\Debug\\Buchanans.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
