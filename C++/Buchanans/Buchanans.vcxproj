@@ -143,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="LinkedStack.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="SoliGoflGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
