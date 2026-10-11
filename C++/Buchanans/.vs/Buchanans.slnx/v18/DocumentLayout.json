@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Spider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Spider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Spider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Card.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Card.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\DLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:DLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\DNode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:DNode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\List.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:List.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\SoliGoflGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -25,6 +29,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\LinkedStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:LinkedStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Card.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Card.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -38,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,33 +58,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "DLinkedList.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\DLinkedList.h",
+              "RelativeDocumentMoniker": "DLinkedList.h",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\DLinkedList.h",
+              "RelativeToolTip": "DLinkedList.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-10-11T05:50:35.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DNode.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\DNode.h",
+              "RelativeDocumentMoniker": "DNode.h",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\DNode.h",
+              "RelativeToolTip": "DNode.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-10-11T05:49:58.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "List.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\List.h",
+              "RelativeDocumentMoniker": "List.h",
+              "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\List.h",
+              "RelativeToolTip": "List.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-10-11T05:49:32.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Spider.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.h",
               "RelativeDocumentMoniker": "Spider.h",
               "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.h",
               "RelativeToolTip": "Spider.h",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-10-11T05:03:44.902Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Spider.cpp",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.cpp",
               "RelativeDocumentMoniker": "Spider.cpp",
               "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Spider.cpp",
               "RelativeToolTip": "Spider.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-10-11T05:02:58.578Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Node.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Node.h",
               "RelativeDocumentMoniker": "Node.h",
@@ -84,33 +135,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LinkedStack.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\LinkedStack.h",
               "RelativeDocumentMoniker": "LinkedStack.h",
               "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\LinkedStack.h",
               "RelativeToolTip": "LinkedStack.h",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-10-11T04:23:17.151Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-11T04:23:17.151Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "SoliGoflGame.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\SoliGoflGame.h",
               "RelativeDocumentMoniker": "SoliGoflGame.h",
               "ToolTip": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\SoliGoflGame.h",
               "RelativeToolTip": "SoliGoflGame.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-10-11T04:22:47.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Card.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Card.h",
               "RelativeDocumentMoniker": "Card.h",
@@ -118,12 +168,11 @@
               "RelativeToolTip": "Card.h",
               "ViewState": "AgIAAGoAAAAAAAAAAAAuwHYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-10-10T20:40:37.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T20:40:37.032Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Buchanans.cpp",
               "DocumentMoniker": "C:\\Users\\Usuario\\OneDrive - Estudiantes ITCR\\Documentos\\ED\\Cochino Proyecto\\C\u002B\u002B\\Buchanans\\Buchanans.cpp",
               "RelativeDocumentMoniker": "Buchanans.cpp",
@@ -131,8 +180,7 @@
               "RelativeToolTip": "Buchanans.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-10-10T18:11:13.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T18:11:13.272Z"
             }
           ]
         }

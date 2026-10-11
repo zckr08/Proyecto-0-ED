@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Spider.h"
 #include "Card.h"
 #include <cstdlib>

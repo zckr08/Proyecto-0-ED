@@ -1,5 +1,13 @@
 #pragma once
-class Spider
-{
-};
 
+#include "Card.h"
+#include "DLinkedList.h"
+
+
+class Spider {
+private:
+
+
+public:
+
+};
