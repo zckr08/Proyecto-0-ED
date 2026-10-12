@@ -149,7 +149,7 @@
     <ClInclude Include="LinkedStack.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="SoliGoflGame.h" />
+    <ClInclude Include="GolfGame.h" />
     <ClInclude Include="Spider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -26,7 +26,7 @@
     <ClInclude Include="Card.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="SoliGoflGame.h">
+    <ClInclude Include="GolfGame.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="LinkedStack.h">
