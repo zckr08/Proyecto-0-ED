@@ -21,8 +21,11 @@ public:
 		cover = true;
 	}
 
-	void flip() {
-		up = true;
+	void flip() { //ahora flip puede volver a que este cubierto
+		if (up == false)
+			up = true;
+		else
+			up = false;
 	}
 
 	void unCover() {
