@@ -123,9 +123,59 @@ public:
         return false;
     
     }
-    void moverCartas(int colOrigen, int colDestino, int cantidadCartas);
-    void repartirMazo();
-    bool verificarEscaleraCompleta(int col);
-    bool haGanado();
+
+    void moverCartas(int colOrigen, int colDestino, int cantidadCartas) {
+        if (esMovimientoValido(colOrigen, colDestino, cantidadCartas)) {            //revisa que el movimiento sea valido
+            columnas[colOrigen].goToEnd();                                          //va al final por si acaso
+            for (int i = 0; i < cantidadCartas; i++) {                              //recorre hacia atras para apuntar a la carta mas grande a mover
+                columnas[colOrigen].previous();
+            }
+            for (int i = 0; i < cantidadCartas; i++) {                              //vuelve a recorrer hacia abajo, removiendo y appendeando el elemento a la columna destino
+                columnas[colDestino].append(columnas[colOrigen].remove());          //se entiende?
+                columnas[colOrigen].next();
+            }
+        }
+    }
+
+    void repartirMazo() {
+        for (int i = 0; i < 10; i++)                        //Win: recorrer las 10 columas y appendearle un mazo .pop
+            columnas[i].append(mazo.pop());
+    }
+
+
+    bool verificarEscaleraCompleta(int col) {
+        int revisar = 0;                                    //Win: Esta es la logica que me plante para revisar si esta completa, reviso los numeros de cada carta por como
+        columnas[col].goToStart();                          //esta hechas intermanete, es decir, AS = 1, 2 = 2 etc. Si los sumo en un acumulador, para que este completa tendria que ser
+        for (int i = 0; i < 14; i++) {                      // 1 + 2 + 3 ... + 13 = 91, si el acumulador es igual a 91 esta completa. 
+            if (columnas[col].atEnd())
+                columnas[col].goToEnd();                    //Si ya esta al final de la lista, retorna false
+                return false;
+
+            if (columnas[col].getElement()->up == false)    //Si esta boca abajo, no se a despejado por ende tambien es falso
+                columnas[col].goToEnd();
+                return false;
+
+            revisar += columnas[col].getElement()->numero;  //Aqui va sumando el acumulador
+            columnas[col].next();                           //pasa a la siguiente carta
+        }
+
+        if (revisar == 91)                                  //si la suma da 91, esta completa
+            return true;
+
+        else
+            return false;
+    }
+
+
+    bool haGanado() {
+        if (escalerasCompletadas == 10)
+            return true;
+        else
+            return false;
+    }
+
+
     void mostrarTablero();
+
+
 };

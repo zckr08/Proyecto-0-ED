@@ -151,6 +151,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="GolfGame.h" />
     <ClInclude Include="Spider.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

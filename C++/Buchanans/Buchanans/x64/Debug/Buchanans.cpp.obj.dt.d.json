@@ -1,7 +1,7 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\buchanans.cpp",
+        "Source": "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\buchanans.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\iostream",
@@ -128,7 +128,7 @@
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\clocale",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\ucrt\\locale.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\ostream",
-            "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\card.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\card.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\string",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\windows.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\shared\\winapifamily.h",
