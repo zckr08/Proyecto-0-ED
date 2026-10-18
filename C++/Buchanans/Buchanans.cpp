@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -6,11 +5,13 @@
 #include <string>
 #include "GolfGame.h"
 #include "Card.h"
+#include "Spider.h"
 
 using std::endl;
 using std::getline;
 using std::cin;
 using namespace std;
+
 void crearBaraja(Card* baraja[52]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
 	int b = 0;
 	for (int t = 0; t < 4; t++) {
@@ -25,8 +26,6 @@ void deleteBaraja(Card* baraja[52]) { //borrar la baraja porque esta en memoria 
 	for (int i = 0; i < 52; i++)
 		delete baraja[i];
 }
-
-
 
 int main() {	//ahora es el menu principal
 	try {
@@ -56,11 +55,73 @@ int main() {	//ahora es el menu principal
 				system("cls"); //esto es para borrar todos que ya estaba impreso en la pantalla, para mantener el orden. Siempre ponerlo antes y despues de imprimir algo, para el orden
 
 				// Aqui iria la funcion que lleva al solitario golf
-				
+
 				system("cls");
 			}
 			else if (opcion == "2") {
-				// Aqui iria la funcion que lleva al solitario spider
+				system("cls");
+				Spider juegoSpider;
+
+				// Crear y rellenar la baraja de 104 cartas para Spider
+				Card* barajaSpider[104];
+				int index = 0;
+				for (int m = 0; m < 2; m++) { // 2 mazos de 52 cartas para Spider
+					for (int t = 0; t < 4; t++) {
+						for (int i = 1; i < 14; i++) {
+							barajaSpider[index] = new Card(i, t);
+							index++;
+						}
+					}
+				}
+
+				juegoSpider.iniciarJuego(barajaSpider);
+
+				// BUCLE INTERACTIVO PARA JUGAR SPIDER
+				string opcionSpider = "";
+				do {
+					juegoSpider.mostrarTablero();
+					cout << "\nSELECCIONE UNA OPCION DEL JUEGO SPIDER: ";
+					getline(cin, opcionSpider);
+
+					if (opcionSpider == "1") {
+						string colO, colD, cant;
+						cout << "Columna origen (1-10): ";
+						getline(cin, colO);
+						cout << "Columna destino (1-10): ";
+						getline(cin, colD);
+						cout << "Cantidad de cartas: ";
+						getline(cin, cant);
+
+						try {
+							int orig = stoi(colO) - 1;
+							int dest = stoi(colD) - 1;
+							int cantidad = stoi(cant);
+							juegoSpider.moverCartas(orig, dest, cantidad);
+						}
+						catch (...) {
+							cout << "Entrada invalida. Presione ENTER para continuar...";
+							string p; getline(cin, p);
+						}
+					}
+					else if (opcionSpider == "2") {
+						juegoSpider.repartirMazo();
+					}
+					else if (opcionSpider == "3") {
+						cout << "Opcion Deshacer en desarrollo. Presione ENTER para continuar...";
+						string p; getline(cin, p);
+					}
+					else if (opcionSpider == "4") {
+						cout << "Opcion Rehacer en desarrollo. Presione ENTER para continuar...";
+						string p; getline(cin, p);
+					}
+
+				} while (opcionSpider != "5" && !juegoSpider.haGanado());
+
+				// Limpiar memoria de la baraja Spider
+				for (int i = 0; i < 104; i++) {
+					delete barajaSpider[i];
+				}
+
 				system("cls");
 			}
 			else if (opcion == "3") { //esto es solo para probar la funcionalidad del menu, solo imprime las cartas para hacer una especie de galeria
@@ -98,12 +159,9 @@ int main() {	//ahora es el menu principal
 				return 0;
 			}
 		} while (opcion != "4");
-	} 
+	}
 	catch (exception& e) {
-		cout << "A ocurrido un error relacionado con: " << e.what() << "\n";
+		cout << "Ha ocurrido un error relacionado con: " << e.what() << "\n";
 	}
 	return 0;
 }
-
-
-

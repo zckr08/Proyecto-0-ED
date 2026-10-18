@@ -1,7 +1,7 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\buchanans.cpp",
+        "Source": "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\buchanans.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\iostream",
@@ -129,8 +129,8 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\ucrt\\locale.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\ostream",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\string",
-            "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\golfgame.h",
-            "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\card.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\golfgame.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\card.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\windows.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\shared\\winapifamily.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\shared\\winpackagefamily.h",
@@ -343,9 +343,15 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\mcx.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\imm.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\ime_cmodes.h",
-            "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\linkedstack.h",
-            "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\node.h",
-            "c:\\users\\usuario\\documents\\taller\\proyecto ed solitario juego\\buchanasns\\c++\\buchanans\\stack.h"
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\linkedstack.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\node.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\stack.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\spider.h",
+            "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\vector",
+            "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\__msvc_bit_utils.hpp",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\dlinkedlist.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\list.h",
+            "c:\\users\\usuario\\onedrive - estudiantes itcr\\documentos\\ed\\cochino proyecto\\proyecto-0-ed\\c++\\buchanans\\dnode.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
