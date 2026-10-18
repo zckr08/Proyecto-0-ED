@@ -3,7 +3,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <exception>
-
+#include <string>
+#include "GolfGame.h"
 #include "Card.h"
 
 using std::endl;
@@ -55,6 +56,67 @@ int main() {	//ahora es el menu principal
 				system("cls"); //esto es para borrar todos que ya estaba impreso en la pantalla, para mantener el orden. Siempre ponerlo antes y despues de imprimir algo, para el orden
 
 				// Aqui iria la funcion que lleva al solitario golf
+				
+					cout << "=== INICIANDO PRUEBA DE SOLITARIO GOLF ===\n";
+
+					// 1. Crear y mezclar la baraja de 52 cartas
+					Card* baraja[52];
+					crearBarajaGolf(baraja);
+					mezclarBarajaGolf(baraja);
+
+					// 2. Instanciar el juego y repartir
+					GolfGame juego;
+					juego.iniciarJuego(baraja);
+
+					string opcion;
+					bool jugando = true;
+
+					// 3. Ciclo interactivo para probar el tablero y movimientos
+					while (jugando) {
+						system("cls"); // Limpia la consola en Windows
+
+						// Mostrar el estado actual del tablero
+						juego.mostrarTablero();
+
+						// Verificar condición de victoria
+						if (juego.haGanado()) {
+							cout << "\n ¡FELICIDADES, HAS GANADO EL PARTIDO! \n";
+							cout << "Presiona Enter para salir...";
+							getline(cin, opcion);
+							break;
+						}
+
+						// Menú de acciones para la prueba
+						cout << "\nACCIONES:\n";
+						cout << "  [1-7] Mover carta de la columna correspondiente al pozo\n";
+						cout << "  [8]   Sacar una carta del mazo de reserva\n";
+						cout << "  [0]   Salir de la prueba\n";
+						cout << "Elige una opcion: ";
+						getline(cin, opcion);
+
+						if (opcion >= "1" && opcion <= "7") {
+							int columnaIndex = stoi(opcion) - 1; // Convertir a índice de 0 a 6
+							juego.moverCarta(columnaIndex);
+						}
+						else if (opcion == "8") {
+							juego.sacarCartaMazo();
+						}
+						else if (opcion == "0") {
+							jugando = false;
+						}
+
+						// Pausa para leer el resultado del movimiento
+						if (opcion != "0") {
+							cout << "\nPresiona Enter para continuar...";
+							getline(cin, opcion);
+						}
+					}
+
+					system("cls");
+					cout << "¡Prueba de Solitario Golf finalizada con éxito!\n";
+				
+
+				
 				system("cls");
 			}
 			else if (opcion == "2") {

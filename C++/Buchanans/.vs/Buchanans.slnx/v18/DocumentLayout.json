@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\GolfGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:GolfGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -11,8 +15,16 @@
       "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:LinkedStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Buchanans.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\DNode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:DNode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\DLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:DLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Spider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -29,18 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Card.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Card.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\DNode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:DNode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\DLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:DLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "Stack.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Stack.h",
               "RelativeDocumentMoniker": "Stack.h",
@@ -79,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "DLinkedList.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\DLinkedList.h",
               "RelativeDocumentMoniker": "DLinkedList.h",
@@ -92,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "DNode.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\DNode.h",
               "RelativeDocumentMoniker": "DNode.h",
@@ -105,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "List.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\List.h",
               "RelativeDocumentMoniker": "List.h",
@@ -118,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Spider.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Spider.h",
               "RelativeDocumentMoniker": "Spider.h",
@@ -131,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Spider.cpp",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Spider.cpp",
               "RelativeDocumentMoniker": "Spider.cpp",
@@ -144,33 +144,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "LinkedStack.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\LinkedStack.h",
               "RelativeDocumentMoniker": "LinkedStack.h",
               "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\LinkedStack.h",
               "RelativeToolTip": "LinkedStack.h",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-10-11T04:23:17.151Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GolfGame.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\GolfGame.h",
               "RelativeDocumentMoniker": "GolfGame.h",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\GolfGame.h",
-              "RelativeToolTip": "GolfGame.h",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAGYAAAAFAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\GolfGame.h*",
+              "RelativeToolTip": "GolfGame.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-10-11T04:22:47.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Card.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Card.h",
               "RelativeDocumentMoniker": "Card.h",
@@ -183,13 +183,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Buchanans.cpp",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Buchanans.cpp",
               "RelativeDocumentMoniker": "Buchanans.cpp",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Buchanans.cpp",
-              "RelativeToolTip": "Buchanans.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Buchanans.cpp*",
+              "RelativeToolTip": "Buchanans.cpp*",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAIwHcAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-10-10T18:11:13.272Z",
               "EditorCaption": ""

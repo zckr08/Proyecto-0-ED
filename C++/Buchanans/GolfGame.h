@@ -5,6 +5,7 @@
 #include "Card.h"
 #include "LinkedStack.h"
 
+
 // Funciones auxiliares de la baraja para el Golf (52 cartas)
 void crearBarajaGolf(Card* baraja[52]) {   //Son como las del main, las pasé para acá para no llamarlas desde allá
     int b = 0;
@@ -98,8 +99,12 @@ public:
         int v1 = cartaColumna->numero;
         int v2 = cartaPozoActual->numero;
 
-        // Regla clásica del Solitario Golf: diferencia de +-1
-        return (v1 == v2 + 1) || (v1 == v2 - 1);
+        bool diferenciaNormal = (v1 == v2 + 1) || (v1 == v2 - 1);
+
+        // A y K
+        bool cicloAsRey = (v1 == 1 && v2 == 13) || (v1 == 13 && v2 == 1); // esto es la variacion de si sale A o K se puedan conectar entre ellos.
+
+        return diferenciaNormal || cicloAsRey; 
     }
 
     void moverCarta(int entradaJuego) {
