@@ -25,22 +25,6 @@ void deleteBaraja(Card* baraja[52]) { //borrar la baraja porque esta en memoria 
 		delete baraja[i];
 }
 
-void mezclarBaraja(Card* baraja[52]) {
-	srand(time(nullptr));
-	for (int i = 0; i < 1000; i++) {
-		int num1;
-		int num2;
-		Card* temp;
-		do {
-			num1 = rand() % 52;		//modificar el 52 por el numero de cartas
-			num2 = rand() % 52;
-		} while (num2 == num1);
-
-		temp = baraja[num1];
-		baraja[num1] = baraja[num2];
-		baraja[num2] = temp;
-	}
-}
 
 
 int main() {	//ahora es el menu principal

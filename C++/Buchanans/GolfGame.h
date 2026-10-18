@@ -5,33 +5,64 @@
 #include "Card.h"
 #include "LinkedStack.h"
 
+// Funciones auxiliares de la baraja para el Golf (52 cartas)
+void crearBarajaGolf(Card* baraja[52]) {   //Son como las del main, las pasé para acá para no llamarlas desde allá
+    int b = 0;
+    for (int t = 0; t < 4; t++) {
+        for (int i = 1; i < 14; i++) {
+            baraja[b] = new Card(i, t);
+            b++;
+        }
+    }
+}
+void deleteBarajaGolf(Card* baraja[52]) {
+    for (int i = 0; i < 52; i++) {
+        delete baraja[i];
+    }
+}
+void mezclarBarajaGolf(Card* baraja[52]) {  //
+    srand(static_cast<unsigned int>(time(nullptr)));
+    for (int i = 0; i < 1000; i++) {
+        int num1 = rand() % 52;
+        int num2 = rand() % 52;
+        if (num1 != num2) {
+            Card* temp = baraja[num1];
+            baraja[num1] = baraja[num2];
+            baraja[num2] = temp;
+        }
+    }
+}
+
 class GolfGame {
 private:
-    LinkedStack<Card*> columnas[7];
-    LinkedStack<Card*> mazo;
-    LinkedStack<Card*> pozo;
+    LinkedStack<Card*> columnas[7]; // Las 7 columnas del tablero (fácil de recorrer)
+    LinkedStack<Card*> mazo;       // Esto pal mazo de reserva
+    LinkedStack<Card*> pozo;       // Pila de descarte
 
 public:
-
     GolfGame() {}
 
-    ~GolfGame() {
+    ~GolfGame() { //el destructosh
+        // Limpiamos cada una de las 7 columnas
         for (int i = 0; i < 7; i++) {
             while (!columnas[i].isEmpty()) {
                 delete columnas[i].pop();
             }
         }
+        // Limpiamos el mazo por si quedaron cartas
         while (!mazo.isEmpty()) {
             delete mazo.pop();
         }
+        // Limpiamos el pozo
         while (!pozo.isEmpty()) {
             delete pozo.pop();
         }
     }
-    void iniciarJuego(Card* baraja[52]) {
-        int i = 0;
 
-        // reparte las cartas en las 7 columnas
+    void iniciarJuego(Card* baraja[52]) {
+        int i = 0; // index de las barajas
+
+        // 1. Repartir 5 cartas a cada una de las 7 columnas 
         for (int col = 0; col < 7; col++) {
             for (int fila = 0; fila < 5; fila++) {
                 Card* cartaActual = baraja[i++];
@@ -41,49 +72,50 @@ public:
             }
         }
 
-        // inicia la primera carta pal pozo 
+        // 2. Pasar la primera carta restante al pozo
         Card* cartaInicial = baraja[i++];
         cartaInicial->unCover();
         cartaInicial->flip();
-        pozo.push(cartaInicial); // la pushea en un stack 
+        pozo.push(cartaInicial);
 
-        // mazo de las cartas que sobran
+        // 3. El resto de las cartas van al mazo de reserva
         while (i < 52) {
             Card* cartaMazo = baraja[i++];
             cartaMazo->unCover();
-            mazo.push(cartaMazo); // las inserta en otro stack 
+            mazo.push(cartaMazo);
         }
     }
-    bool esMovimientoValido(int entradaC) {
-        if (entradaC < 0 || entradaC >= 7) return false;
-        if (columnas[entradaC].isEmpty() || pozo.isEmpty()) {
+
+    bool esMovimientoValido(int entradaJuego) {
+        if (entradaJuego < 0 || entradaJuego >= 7) return false;
+        if (columnas[entradaJuego].isEmpty() || pozo.isEmpty()) {
             return false;
         }
 
-        Card* cartaColumna = columnas[entradaC].topValue();
-        Card* cartaActual = pozo.topValue();
+        Card* cartaColumna = columnas[entradaJuego].topValue();
+        Card* cartaPozoActual = pozo.topValue();
 
         int v1 = cartaColumna->numero;
-        int v2 = cartaActual->numero;
+        int v2 = cartaPozoActual->numero;
 
-        // la regla de +1 -1 del golf
+        // Regla clásica del Solitario Golf: diferencia de +-1
         return (v1 == v2 + 1) || (v1 == v2 - 1);
     }
-    void moverCarta(int entradaC) {
-        if (esMovimientoValido(entradaC)) {
-            Card* cartaMovida = columnas[entradaC].pop();
+
+    void moverCarta(int entradaJuego) {
+        if (esMovimientoValido(entradaJuego)) {
+            Card* cartaMovida = columnas[entradaJuego].pop();
             pozo.push(cartaMovida);
-            std::cout << "Un saico la jugada! :)\n";
+            cout << "¡Movimiento exit de exitante!\n";
         }
         else {
-            std::cout << "Movimiento no válido. Quizá no tan saico :(.\n";
+            cout << "Movimiento no válido. La carta debe ser una unidad mayor o menor que la del pozo monguis.\n";
         }
     }
 
-    // funcion que manda al pozo 
     void sacarCartaMazo() {
         if (mazo.isEmpty()) {
-            std::cout << " Ya no hay mas movimientos disponibles. :(\n";
+            cout << "¡El mazo de reserva está vacío! No se pueden sacar más cartas.\n";
             return;
         }
 
@@ -91,11 +123,10 @@ public:
         cartaMazo->flip();
         cartaMazo->unCover();
         pozo.push(cartaMazo);
-        std::cout << "Maravillosa jugada! \n";
+        cout << "Se ha sacado una nueva carta del mazo al pozo.\n";
     }
 
-    // veamos si ganó.
-    bool haGanado() {
+    bool haGanado() {            // pa saber si ganó 
         for (int i = 0; i < 7; i++) {
             if (!columnas[i].isEmpty()) {
                 return false;
@@ -104,16 +135,15 @@ public:
         return true;
     }
 
-    // si no ganó (Todavia)
-    bool hayMovimientosDisponibles() {
+    bool hayMovimientosDisponibles() { //Esta va a comparar el valor de la carta que hay en el pozo
         if (pozo.isEmpty()) return false;
 
-        int PozoRest = pozo.topValue()->numero;
+        int valorPozo = pozo.topValue()->numero;
 
         for (int i = 0; i < 7; i++) {
             if (!columnas[i].isEmpty()) {
-                int valorColumna = columnas[i].topValue()->numero;
-                if (valorColumna == PozoRest + 1 || valorColumna == PozoRest - 1) {
+                int valorColumna = columnas[i].topValue()->numero;  // va columna por columna comparando si hay más movimientos validos
+                if (valorColumna == valorPozo + 1 || valorColumna == valorPozo - 1) {
                     return true;
                 }
             }
@@ -121,28 +151,32 @@ public:
         return false;
     }
 
-    // para ver como va el jueguito
+    bool mazoVacio() {
+        return mazo.isEmpty();
+    }
+
     void mostrarTablero() {
-        std::cout << "\n POZO  \n";
+        cout << "\nPOZO \n";
         if (!pozo.isEmpty()) {
-            std::cout << "Cima del Pozo -> ";
+            cout << "Cima del Pozo -> ";
             pozo.topValue()->draw();
         }
         else {
-            std::cout << "Pozo Vacío\n";
+            cout << "[Pozo Vacío]\n";
         }
 
-        std::cout << "\n COLUMNAS \n";
+        cout << "\nCOLUMNAS \n";
         for (int i = 0; i < 7; i++) {
-            std::cout << "Columna " << i + 1 << " (Cartas restantes: " << columnas[i].getSize() << "):\n";
+            cout << "Columna " << i + 1 << " (Cartas restantes: " << columnas[i].getSize() << "):\n";
             if (!columnas[i].isEmpty()) {
-                std::cout << "  Cima -> ";
+                cout << "  Cima -> ";
                 columnas[i].topValue()->draw();
             }
             else {
-                std::cout << "  Columna Vacía\n";
+                cout << "  [Columna Vacía]\n";
             }
         }
-        std::cout << "Lo que te falta mi hermano: " << mazo.getSize() << "\n";
+        cout << "----------------------------------------\n";
+        cout << "Cartas restantes en mazo: " << mazo.getSize() << "\n";
     }
 };

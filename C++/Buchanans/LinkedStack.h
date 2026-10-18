@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "Node.h"
+#include "Stack.h"
 
 using std::runtime_error;
 using std::cout;
