@@ -33,13 +33,18 @@ void mezclarBarajaGolf(Card* baraja[52]) {  //
         }
     }
 }
+struct MoveRecord {
+    int tipoAccion;    // 1 = columna a pozo, 2 = mazo a pozo
+    int columnaIndex;  // Índice de la columna (0 a 6)
+    Card* carta;       // La carta que se movió
+};
 
 class GolfGame {
 private:
     LinkedStack<Card*> columnas[7]; // Las 7 columnas del tablero (fácil de recorrer)
     LinkedStack<Card*> mazo;       // Esto pal mazo de reserva
     LinkedStack<Card*> pozo;       // Pila de descarte
-
+    LinkedStack<MoveRecord*> historialMovimientos; // este guarda el historial
 public:
     GolfGame() {}
 
@@ -112,11 +117,16 @@ public:
             Card* cartaMovida = columnas[entradaJuego].pop();
             pozo.push(cartaMovida);
             cout << "¡Movimiento exit de exitante!\n";
+
+            // Crear el registro del movimiento
+            MoveRecord* registro = new MoveRecord{ 1, entradaJuego, cartaMovida };
+            historialMovimientos.push(registro);
         }
         else {
             cout << "Movimiento no válido. La carta debe ser una unidad mayor o menor que la del pozo monguis.\n";
         }
     }
+    
 
     void sacarCartaMazo() {
         if (mazo.isEmpty()) {
@@ -129,6 +139,36 @@ public:
         cartaMazo->unCover();
         pozo.push(cartaMazo);
         cout << "Se ha sacado una nueva carta del mazo al pozo.\n";
+        MoveRecord* registro = new MoveRecord{ 2, -1, cartaMazo };
+        historialMovimientos.push(registro);
+    }
+    void deshacerMovimiento() {
+        if (historialMovimientos.isEmpty()) {
+            cout << "¡No hay movimientos para deshacer!\n";
+            return;
+        }
+
+        // Sacamos el último movimiento realizado
+        MoveRecord* ultimoMovimiento = historialMovimientos.pop();
+
+        // Verificamos de dónde vino la carta para revertirla
+        if (ultimoMovimiento->tipoAccion == 1) {
+            // la sacamos del pozo y la regresamos a su columna
+            Card* cartaRegresada = pozo.pop();
+            columnas[ultimoMovimiento->columnaIndex].push(cartaRegresada);
+            cout << "Se ha deshecho el movimiento. \n";
+        }
+        else if (ultimoMovimiento->tipoAccion == 2) {
+            //  la sacamos del pozo y la regresamos al mazo
+            Card* cartaRegresada = pozo.pop();
+            
+            cartaRegresada->flip(); // le damos vuelta para que no se vea en el mazo
+            mazo.push(cartaRegresada);
+            cout << "Se ha devuelto la carta al mazo.\n";
+        }
+
+        //Liberar la memoria del registro del movimiento
+        delete ultimoMovimiento;
     }
 
     bool haGanado() {            // pa saber si ganó 
