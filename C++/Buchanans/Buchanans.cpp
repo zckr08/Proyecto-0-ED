@@ -27,7 +27,7 @@ void deleteBaraja(Card* baraja[52]) { //borrar la baraja porque esta en memoria 
 		delete baraja[i];
 }
 
-int main() {	//ahora es el menu principal
+int main3() {	//ahora es el menu principal
 	try {
 		string opcion;
 		do { //un do  para que siempre que se termine una funcion regrese al menu principal
