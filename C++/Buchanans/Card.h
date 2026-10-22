@@ -29,7 +29,7 @@ public:
 		delete representacion;
 	}
 
-	void flip() { //ahora flip puede volver a que este cubierto
+	void flip() {
 		up = !up;
 		repre();
 	}

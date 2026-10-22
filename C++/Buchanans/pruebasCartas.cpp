@@ -2,9 +2,12 @@
 #include <iostream>
 #include "Card.h"
 #include "LinkedList.h"
+#include "ArrayList.h"
+#include "Mazo.h"
 
 using std::cout;
 using std::endl;
+using std::string;
 
 void crearBaraja1(Card* baraja[52]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
 	int b = 0;
@@ -16,99 +19,74 @@ void crearBaraja1(Card* baraja[52]) { //funcion para crear una baraja estandard 
 	}
 }
 
+void impresionBarajas(ArrayList<LinkedList<Mazo*>*>* mazos) {
+	bool todasImpresas = false;
+	int cantidadMazos = mazos->getSize();
+	int listos;
+	while (!todasImpresas) {
+		string imprimir = "";
+		for (int i = 0; i < mazos->getSize();i++) {
+			mazos->goToPos(i);
+			Mazo* mazo = mazos->getElement()->getElement();
+			string parte = "";
+			if (!mazo->mazoImpreso) {
+				if (!mazo->imprimiendo) {
+					Card* carta = mazo->cartas->getElement();
+					mazo->cartas->next();
+					mazo->representacion = carta->representacion;
+					mazo->representacion->goToStart();
+					mazo->imprimiendo = true;
+				}
+				parte = mazo->representacion->getElement();
+				mazo->representacion->next();
+				if (mazo->representacion->atEnd()) {
+					mazo->imprimiendo = false;
+					if (mazo->cartas->atEnd()) mazo->mazoImpreso = true;
+				}
+			}
+			imprimir += parte + "          ";
+		}
+		listos = 0;
+		for (int i = 0; i < mazos->getSize();i++) {
+			mazos->goToPos(i);
+			if (mazos->getElement()->getElement()->mazoImpreso) listos += 1;
+		}
+		if (listos == cantidadMazos) todasImpresas = true;
+		cout << imprimir << endl;
+	}
+}
+
 int main() {
 	Card* baraja[52];
 	crearBaraja1(baraja);
-	LinkedList<Card*>* lista1 = new LinkedList<Card*>();
-	LinkedList<Card*>* lista2 = new LinkedList<Card*>();
-	LinkedList<Card*>* lista3 = new LinkedList<Card*>();
-	for (int i = 0; i < 5; i++) {
-		baraja[i]->flip();
-		lista1->append(baraja[i]);
-	}
-	for (int i = 0; i < 4; i++) {
-		baraja[i + 10]->flip();
-		lista2->append(baraja[i + 10]);
-	}
-	for (int i = 0; i < 3; i++) {
-		baraja[i + 20]->flip();
-		lista3->append(baraja[i + 20]);
-	}
-	lista1->goToStart();
-	lista2->goToStart();
-	lista3->goToStart();
-	bool todasImpresas = false;
-	bool mazo1 = false;
-	bool imprimiendo1 = false;
-	LinkedList<string>* representacion1 = nullptr;
-	bool mazo2 = false;
-	bool imprimiendo2 = false;
-	LinkedList<string>* representacion2 = nullptr;
-	bool mazo3 = false;
-	bool imprimiendo3 = false;
-	LinkedList<string>* representacion3 = nullptr;
-	while (!todasImpresas) {
-		string imprimir = "";
-		if (!mazo1) {
-			if (!imprimiendo1) {
-				Card* carta = lista1->getElement();
-				lista1->next();
-				if (lista1->atEnd()) carta->unCover();
-				representacion1 = carta->representacion;
-				representacion1->goToStart();
-				imprimiendo1 = true;
-			}
-			imprimir += representacion1->getElement();
-			imprimir += " ";
-			representacion1->next();
-			if (representacion1->atEnd()) {
-				imprimiendo1 = false;
-				if (lista1->atEnd()) mazo1 = true;
-			}
+	int tamanos[3] = { 5, 4, 3 };
+	int inicio[3] = { 0, 10, 20 };
+	ArrayList<LinkedList<Mazo*>*>* mazos = new ArrayList<LinkedList<Mazo*>*>();
+	for (int m = 0; m < 3; m++) {
+		LinkedList<Card*>* lista = new LinkedList<Card*>();
+		for (int i = 0; i < tamanos[m]; i++) {
+			baraja[inicio[m] + i]->flip();
+			lista->append(baraja[inicio[m] + i]);
 		}
-		if (mazo1) imprimir += "          ";
-		if (!mazo2) {
-			if (!imprimiendo2) {
-				Card* carta = lista2->getElement();
-				lista2->next();
-				if (lista2->atEnd()) carta->unCover();
-				representacion2 = carta->representacion;
-				representacion2->goToStart();
-				imprimiendo2 = true;
-			}
-			imprimir += representacion2->getElement();
-			imprimir += " ";
-			representacion2->next();
-			if (representacion2->atEnd()) {
-				imprimiendo2 = false;
-				if (lista2->atEnd()) mazo2 = true;
-			}
-		}
-		if (mazo2) imprimir += "          ";
-		if (!mazo3) {
-			if (!imprimiendo3) {
-				Card* carta = lista3->getElement();
-				lista3->next();
-				if (lista3->atEnd()) carta->unCover();
-				representacion3 = carta->representacion;
-				representacion3->goToStart();
-				imprimiendo3 = true;
-			}
-			imprimir += representacion3->getElement();
-			imprimir += " ";
-			representacion3->next();
-			if (representacion3->atEnd()) {
-				imprimiendo3 = false;
-				if (lista3->atEnd()) mazo3 = true;
-			}
-		}
-		if (mazo3) imprimir += "          ";
-		if (mazo1 && mazo2 && mazo3) todasImpresas = true;
-		cout << imprimir << endl;
+		baraja[inicio[m] + tamanos[m] - 1]->unCover();   // NUEVO: destapar la última carta antes de imprimir
+		lista->goToStart();
+		LinkedList<Mazo*>* grupo = new LinkedList<Mazo*>();
+		grupo->append(new Mazo(lista));
+		grupo->goToStart();
+		mazos->append(grupo);
 	}
-	delete lista1;
-	delete lista2;
-	delete lista3;
+
+	impresionBarajas(mazos);
+
+	for (int m = 0; m < mazos->getSize(); m++) {
+		mazos->goToPos(m);
+		LinkedList<Mazo*>* grupo = mazos->getElement();
+		Mazo* mazo = grupo->getElement();
+		delete mazo->cartas;
+		delete mazo;
+		delete grupo;
+	}
+	delete mazos;
 	for (int i = 0; i < 52; i++) {
 		delete baraja[i];
 	}

@@ -144,12 +144,14 @@
     <ClCompile Include="Spider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayList.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="DNode.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedStack.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Mazo.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="GolfGame.h" />
     <ClInclude Include="Spider.h" />
