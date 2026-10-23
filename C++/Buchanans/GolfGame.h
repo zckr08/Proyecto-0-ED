@@ -4,77 +4,108 @@
 #include <ctime>
 #include "Card.h"
 #include "LinkedStack.h"
+#include "LinkedList.h"
+#include "ArrayList.h"
+#include "Mazo.h"
 
-
-// Funciones auxiliares de la baraja para el Golf (52 cartas)
-void crearBarajaGolf(Card* baraja[52]) {   //Son como las del main, las pasé para acá para no llamarlas desde allá
-    int b = 0;
-    for (int t = 0; t < 4; t++) {
-        for (int i = 1; i < 14; i++) {
-            baraja[b] = new Card(i, t);
-            b++;
-        }
-    }
-}
-void deleteBarajaGolf(Card* baraja[52]) {
-    for (int i = 0; i < 52; i++) {
-        delete baraja[i];
-    }
-}
-void mezclarBarajaGolf(Card* baraja[52]) {  //
-    srand(static_cast<unsigned int>(time(nullptr)));
-    for (int i = 0; i < 1000; i++) {
-        int num1 = rand() % 52;
-        int num2 = rand() % 52;
-        if (num1 != num2) {
-            Card* temp = baraja[num1];
-            baraja[num1] = baraja[num2];
-            baraja[num2] = temp;
-        }
-    }
-}
-struct MoveRecord {
-    int tipoAccion;    // 1 = columna a pozo, 2 = mazo a pozo
-    int columnaIndex;  // Índice de la columna (0 a 6)
-    Card* carta;       // La carta que se movió
-};
 
 class GolfGame {
 private:
-    LinkedStack<Card*> columnas[7]; // Las 7 columnas del tablero (fácil de recorrer)
-    LinkedStack<Card*> mazo;       // Esto pal mazo de reserva
-    LinkedStack<Card*> pozo;       // Pila de descarte
-    LinkedStack<MoveRecord*> historialMovimientos; // este guarda el historial
-public:
-    GolfGame() {}
+    ArrayList<LinkedList<Mazo*>*>* columnas;
+    LinkedStack<Card*> mazo;
+    LinkedStack<Card*> pozo;
 
-    ~GolfGame() { //el destructosh
-        // Limpiamos cada una de las 7 columnas
-        for (int i = 0; i < 7; i++) {
-            while (!columnas[i].isEmpty()) {
-                delete columnas[i].pop();
-            }
+    void impresionBarajas(ArrayList<LinkedList<Mazo*>*>* mazos) {
+        for (int i = 0; i < mazos->getSize(); i++) {
+            mazos->goToPos(i);
+            Mazo* columna = mazos->getElement()->getElement();
+            columna->cartas->goToStart();
+            columna->imprimiendo = false;
+            columna->mazoImpreso = (columna->cartas->getSize() == 0);
         }
-        // Limpiamos el mazo por si quedaron cartas
+        bool todasImpresas = false;
+        int cantidadMazos = mazos->getSize();
+        int listos;
+        while (!todasImpresas) {
+            string imprimir = "";
+            for (int i = 0; i < mazos->getSize();i++) {
+                mazos->goToPos(i);
+                Mazo* mazo = mazos->getElement()->getElement();
+                string parte = "";
+                if (!mazo->mazoImpreso) {
+                    if (!mazo->imprimiendo) {
+                        Card* carta = mazo->cartas->getElement();
+                        mazo->cartas->next();
+                        mazo->representacion = carta->representacion;
+                        mazo->representacion->goToStart();
+                        mazo->imprimiendo = true;
+                    }
+                    parte = mazo->representacion->getElement();
+                    mazo->representacion->next();
+                    if (mazo->representacion->atEnd()) {
+                        mazo->imprimiendo = false;
+                        if (mazo->cartas->atEnd()) mazo->mazoImpreso = true;
+                    }
+                }
+                if (parte == "") parte = "         ";
+                imprimir += parte + "          ";
+            }
+            listos = 0;
+            for (int i = 0; i < mazos->getSize();i++) {
+                mazos->goToPos(i);
+                if (mazos->getElement()->getElement()->mazoImpreso) listos += 1;
+            }
+            if (listos == cantidadMazos) todasImpresas = true;
+            cout << imprimir << endl;
+        }
+    }
+public:
+
+    GolfGame() {
+        columnas = new ArrayList<LinkedList<Mazo*>*>();
+        for (int i = 0; i < 7; i++) {
+            LinkedList<Mazo*>* listaMazo = new LinkedList<Mazo*>();
+            LinkedList<Card*>* listaCartas = new LinkedList<Card*>();
+            Mazo* columna = new Mazo(listaCartas);
+            listaMazo->append(columna);
+            columnas->append(listaMazo);
+        }
+    }
+
+    ~GolfGame() {
+        for (int c = 0; c < columnas->getSize(); c++) {
+            columnas->goToPos(c);
+            LinkedList<Mazo*>* grupo = columnas->getElement();
+            Mazo* columna = grupo->getElement();
+            columna->cartas->goToStart();
+            while (!columna->cartas->atEnd()) {
+                delete columna->cartas->getElement();
+                columna->cartas->next();
+            }
+            delete columna->cartas;
+            delete columna;
+            delete grupo;
+        }
+        delete columnas;
         while (!mazo.isEmpty()) {
             delete mazo.pop();
         }
-        // Limpiamos el pozo
         while (!pozo.isEmpty()) {
             delete pozo.pop();
         }
     }
-
     void iniciarJuego(Card* baraja[52]) {
         int i = 0; // index de las barajas
 
         // 1. Repartir 5 cartas a cada una de las 7 columnas 
         for (int col = 0; col < 7; col++) {
+            columnas->goToPos(col);
             for (int fila = 0; fila < 5; fila++) {
                 Card* cartaActual = baraja[i++];
                 cartaActual->unCover();
                 cartaActual->flip();
-                columnas[col].push(cartaActual);
+                if (fila == 4) cartaActual->unCover();
+                columnas->getElement()->getElement()->cartas->append(cartaActual);
             }
         }
 
@@ -91,43 +122,47 @@ public:
             mazo.push(cartaMazo);
         }
     }
-
-    bool esMovimientoValido(int entradaJuego) {
-        if (entradaJuego < 0 || entradaJuego >= 7) return false;
-        if (columnas[entradaJuego].isEmpty() || pozo.isEmpty()) {
+    bool esMovimientoValido(int entradaC) {
+        if (entradaC < 0 || entradaC >= 7) return false;
+        columnas->goToPos(entradaC);
+        LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+        if (cartas->isEmpty() || pozo.isEmpty()) {
             return false;
         }
-
-        Card* cartaColumna = columnas[entradaJuego].topValue();
-        Card* cartaPozoActual = pozo.topValue();
+        cartas->goToPos(cartas->getSize() - 1);
+        Card* cartaColumna = cartas->getElement();
+        Card* cartaActual = pozo.topValue();
 
         int v1 = cartaColumna->numero;
-        int v2 = cartaPozoActual->numero;
+        int v2 = cartaActual->numero;
+
 
         bool diferenciaNormal = (v1 == v2 + 1) || (v1 == v2 - 1);
 
         // A y K
         bool cicloAsRey = (v1 == 1 && v2 == 13) || (v1 == 13 && v2 == 1); // esto es la variacion de si sale A o K se puedan conectar entre ellos.
 
-        return diferenciaNormal || cicloAsRey; 
+        return diferenciaNormal || cicloAsRey;
     }
-
     void moverCarta(int entradaJuego) {
         if (esMovimientoValido(entradaJuego)) {
-            Card* cartaMovida = columnas[entradaJuego].pop();
+            columnas->goToPos(entradaJuego);
+            LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+            cartas->goToPos(cartas->getSize() - 1);
+            Card* cartaMovida = cartas->remove();
             pozo.push(cartaMovida);
-            cout << "¡Movimiento exit de exitante!\n";
-
-            // Crear el registro del movimiento
-            MoveRecord* registro = new MoveRecord{ 1, entradaJuego, cartaMovida };
-            historialMovimientos.push(registro);
+            if (!cartas->isEmpty()) {
+                cartas->goToPos(cartas->getSize() - 1);
+                cartas->getElement()->unCover();
+            }
+            std::cout << "¡Movimiento exit de exitante!\n";
         }
         else {
-            cout << "Movimiento no válido. La carta debe ser una unidad mayor o menor que la del pozo monguis.\n";
+            std::cout << "Movimiento no válido. La carta debe ser una unidad mayor o menor que la del pozo monguis.\n";
         }
     }
-    
 
+    // funcion que manda al pozo 
     void sacarCartaMazo() {
         if (mazo.isEmpty()) {
             cout << "¡El mazo de reserva está vacío! No se pueden sacar más cartas.\n";
@@ -139,55 +174,31 @@ public:
         cartaMazo->unCover();
         pozo.push(cartaMazo);
         cout << "Se ha sacado una nueva carta del mazo al pozo.\n";
-        MoveRecord* registro = new MoveRecord{ 2, -1, cartaMazo };
-        historialMovimientos.push(registro);
-    }
-    void deshacerMovimiento() {
-        if (historialMovimientos.isEmpty()) {
-            cout << "¡No hay movimientos para deshacer!\n";
-            return;
-        }
-
-        // Sacamos el último movimiento realizado
-        MoveRecord* ultimoMovimiento = historialMovimientos.pop();
-
-        // Verificamos de dónde vino la carta para revertirla
-        if (ultimoMovimiento->tipoAccion == 1) {
-            // la sacamos del pozo y la regresamos a su columna
-            Card* cartaRegresada = pozo.pop();
-            columnas[ultimoMovimiento->columnaIndex].push(cartaRegresada);
-            cout << "Se ha deshecho el movimiento. \n";
-        }
-        else if (ultimoMovimiento->tipoAccion == 2) {
-            //  la sacamos del pozo y la regresamos al mazo
-            Card* cartaRegresada = pozo.pop();
-            
-            cartaRegresada->flip(); // le damos vuelta para que no se vea en el mazo
-            mazo.push(cartaRegresada);
-            cout << "Se ha devuelto la carta al mazo.\n";
-        }
-
-        //Liberar la memoria del registro del movimiento
-        delete ultimoMovimiento;
     }
 
-    bool haGanado() {            // pa saber si ganó 
+
+    bool haGanado() {     // pa saber si ganó.
         for (int i = 0; i < 7; i++) {
-            if (!columnas[i].isEmpty()) {
+            columnas->goToPos(i);
+            if (!columnas->getElement()->getElement()->cartas->isEmpty()) {
                 return false;
             }
         }
         return true;
     }
 
-    bool hayMovimientosDisponibles() { //Esta va a comparar el valor de la carta que hay en el pozo
+    // si no ganó (Todavia)
+    bool hayMovimientosDisponibles() {
         if (pozo.isEmpty()) return false;
 
         int valorPozo = pozo.topValue()->numero;
 
         for (int i = 0; i < 7; i++) {
-            if (!columnas[i].isEmpty()) {
-                int valorColumna = columnas[i].topValue()->numero;  // va columna por columna comparando si hay más movimientos validos
+            columnas->goToPos(i);
+            LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+            if (!cartas->isEmpty()) {
+                cartas->goToPos(cartas->getSize() - 1);
+                int valorColumna = cartas->getElement()->numero;
                 if (valorColumna == valorPozo + 1 || valorColumna == valorPozo - 1) {
                     return true;
                 }
@@ -200,10 +211,11 @@ public:
         return mazo.isEmpty();
     }
 
+    // para ver como va el jueguito
     void mostrarTablero() {
         cout << "\nPOZO \n";
         if (!pozo.isEmpty()) {
-            cout << "Cima del Pozo -> ";
+            cout << "Cima del Pozo ->\n";                  // MODIFICADO: sin "->" y con salto de línea
             pozo.topValue()->draw();
         }
         else {
@@ -211,16 +223,9 @@ public:
         }
 
         cout << "\nCOLUMNAS \n";
-        for (int i = 0; i < 7; i++) {
-            cout << "Columna " << i + 1 << " (Cartas restantes: " << columnas[i].getSize() << "):\n";
-            if (!columnas[i].isEmpty()) {
-                cout << "  Cima -> ";
-                columnas[i].topValue()->draw();
-            }
-            else {
-                cout << "  [Columna Vacía]\n";
-            }
-        }
+        for (int c = 0; c < columnas->getSize(); c++) cout << "    " << c + 1 << "              ";
+        cout << endl;
+        impresionBarajas(columnas);
         cout << "----------------------------------------\n";
         cout << "Cartas restantes en mazo: " << mazo.getSize() << "\n";
     }

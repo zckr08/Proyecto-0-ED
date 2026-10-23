@@ -114,6 +114,9 @@ public:
 	bool atStart() {
 		return current == head;
 	}
+	bool isEmpty() {
+		return size == 0;
+	}
 	int getPos() {
 		int pos = 0;
 		Node<E>* temp = head;

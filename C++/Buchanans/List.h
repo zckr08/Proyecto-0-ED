@@ -19,6 +19,7 @@ public:
     virtual void previous() = 0;
     virtual bool atEnd() = 0;
     virtual bool atStart() = 0;
+    virtual bool isEmpty() = 0;
     virtual int getPos() = 0;
     virtual int getSize() = 0;
     virtual void print() = 0;

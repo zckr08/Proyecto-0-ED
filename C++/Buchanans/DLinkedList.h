@@ -117,6 +117,10 @@ public:
         return current == head;
     }
 
+    bool isEmpty() {
+        return size == 0;
+    }
+
     int getPos() {
         DNode<E>* temp = head;
         int pos = 0;

@@ -12,7 +12,7 @@ using std::getline;
 using std::cin;
 using namespace std;
 
-void crearBaraja(Card* baraja[52]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
+void crearBaraja1(Card* baraja[52]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
 	int b = 0;
 	for (int t = 0; t < 4; t++) {
 		for (int i = 1; i < 14; i++) {
@@ -127,7 +127,7 @@ int main3() {	//ahora es el menu principal
 			else if (opcion == "3") { //esto es solo para probar la funcionalidad del menu, solo imprime las cartas para hacer una especie de galeria
 				system("cls");
 				Card* baraja[52];
-				crearBaraja(baraja);
+				crearBaraja1(baraja);
 				cout << "+---------------------------------------------------------------------------------------+" << endl;
 				cout << "|                                   GALERIA DE CARTAS                                   |" << endl;
 				cout << "+---------------------------------------------------------------------------------------+" << endl;

@@ -98,6 +98,9 @@ public:
 	bool atStart() {
 		return pos == 0;
 	}
+	bool isEmpty() {
+		return size == 0;
+	}
 	int getPos() {
 		return pos;
 	}
