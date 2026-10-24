@@ -1,0 +1,9 @@
+# Archivos temporales de Visual Studio
+.vs/
+**/.vs/
+
+# Archivos de compilación
+Debug/
+Release/
+x64/
+x86/
