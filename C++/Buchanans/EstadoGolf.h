@@ -9,7 +9,6 @@ public:
     ArrayList<LinkedList<Card*>*>* columnasEstado;
     LinkedStack<Card*>* mazoEstado;
     LinkedStack<Card*>* pozoEstado;
-
    
     EstadoGolf(ArrayList<LinkedList<Card*>*>* columnas, LinkedStack<Card*>* mazo, LinkedStack<Card*>* pozo) {
 

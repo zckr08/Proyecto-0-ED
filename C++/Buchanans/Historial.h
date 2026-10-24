@@ -1,5 +1,8 @@
 #pragma once
+#include <stdexcept>
 #include "DLinkedList.h"
+
+using std::runtime_error;
 
 template <typename E>
 class Historial {
@@ -8,6 +11,8 @@ private:
     int indiceActual; // Controla en qué punto del historial estamos parados
 
 public:
+    Historial(const Historial<E>& otro) = delete;
+    Historial<E>& operator=(const Historial<E>& otro) = delete;
     Historial() {
         listaEstados = new DLinkedList<E>();
         indiceActual = -1;
@@ -31,22 +36,18 @@ public:
     }
 
     E deshacer() {
-        if (indiceActual > 0) {
-            indiceActual--;
-            listaEstados->goToPos(indiceActual);
-            return listaEstados->getElement();
-        }
-        return nullptr;
+        if (indiceActual <= 0) {throw runtime_error("No hay estados anteriores");}
+        indiceActual--;
+        listaEstados->goToPos(indiceActual);
+        return listaEstados->getElement();
     }
 
    
     E rehacer() {
-        if (indiceActual < listaEstados->getSize() - 1) {
-            indiceActual++;
-            listaEstados->goToPos(indiceActual);
-            return listaEstados->getElement();
-        }
-        return nullptr; // No hay más estados hacia adelante
+        if (indiceActual >= listaEstados->getSize() - 1) {throw runtime_error("No hay estados siguientes");}
+        indiceActual++;
+        listaEstados->goToPos(indiceActual);
+        return listaEstados->getElement();
     }
 
     int getIndiceActual() { return indiceActual; }
