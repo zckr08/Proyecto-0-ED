@@ -36,18 +36,25 @@ public:
     }
 
     E deshacer() {
-        if (indiceActual <= 0) {throw runtime_error("No hay estados anteriores");}
-        indiceActual--;
-        listaEstados->goToPos(indiceActual);
-        return listaEstados->getElement();
+        if (indiceActual > 0) {
+            indiceActual--;
+            listaEstados->goToPos(indiceActual);
+            return listaEstados->getElement();
+        }
+
+        throw runtime_error("No hay estados anteriores");
     }
 
    
     E rehacer() {
-        if (indiceActual >= listaEstados->getSize() - 1) {throw runtime_error("No hay estados siguientes");}
-        indiceActual++;
-        listaEstados->goToPos(indiceActual);
-        return listaEstados->getElement();
+        if (indiceActual < listaEstados->getSize() - 1) {
+
+            indiceActual++;
+            listaEstados->goToPos(indiceActual);
+            return listaEstados->getElement();
+        }
+
+        throw runtime_error("No hay estados siguientes");
     }
 
     int getIndiceActual() { return indiceActual; }
