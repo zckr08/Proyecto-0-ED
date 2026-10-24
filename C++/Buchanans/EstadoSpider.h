@@ -11,17 +11,17 @@ public:
     int escalerasCompletadas;
 
    
-    EstadoSpider(DLinkedList<Card*>* columnasActuales[10], LinkedStack<Card*>* mazoActual, int escaleras) {
+    EstadoSpider(DLinkedList<Card*>* columnas[10], LinkedStack<Card*>* mazo, int escaleras) {
         escalerasCompletadas = escaleras;
 
       
         for (int i = 0; i < 10; i++) {
             columnasEstado[i] = new DLinkedList<Card*>();
 
-            columnasActuales[i]->goToStart();
-            while (!columnasActuales[i]->atEnd()) {
-                columnasEstado[i]->append(columnasActuales[i]->getElement()); 
-                columnasActuales[i]->next();
+            columnas[i]->goToStart();
+            while (!columnas[i]->atEnd()) {
+                columnasEstado[i]->append(columnas[i]->getElement()); 
+                columnas[i]->next();
             }
         }
 
@@ -29,12 +29,12 @@ public:
         mazoEstado = new LinkedStack<Card*>();
         LinkedStack<Card*> tempMazo;
 
-        while (!mazoActual->isEmpty()) {
-            tempMazo.push(mazoActual->pop());
+        while (!mazo->isEmpty()) {
+            tempMazo.push(mazo->pop());
         }
         while (!tempMazo.isEmpty()) {
             Card* carta = tempMazo.pop();
-            mazoActual->push(carta);   // Devuelve la carta al original para dejarlo intacto
+            mazo->push(carta);   // Devuelve la carta al original para dejarlo intacto
             mazoEstado->push(carta);    // Guarda la carta en la copia del estado
         }
     }

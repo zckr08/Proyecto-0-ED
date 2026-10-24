@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoGolf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:EstadoGolf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoSpider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:EstadoSpider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoGolf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|solutionrelative:EstadoGolf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A9EE656-1BE9-418C-A789-F80615061ACE}|Buchanans.vcxproj|C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\Historial.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -82,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,26 +98,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "EstadoSpider.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoSpider.h",
               "RelativeDocumentMoniker": "EstadoSpider.h",
               "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoSpider.h",
               "RelativeToolTip": "EstadoSpider.h",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADMAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-10-24T19:53:15.186Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EstadoGolf.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoGolf.h",
               "RelativeDocumentMoniker": "EstadoGolf.h",
               "ToolTip": "C:\\Users\\Usuario\\Documents\\Taller\\Proyecto ED solitario juego\\Buchanasns\\C\u002B\u002B\\Buchanans\\EstadoGolf.h",
               "RelativeToolTip": "EstadoGolf.h",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-10-24T19:43:46.536Z",
               "EditorCaption": ""

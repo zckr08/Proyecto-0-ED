@@ -11,13 +11,13 @@ public:
     LinkedStack<Card*>* pozoEstado;
 
    
-    EstadoGolf(ArrayList<LinkedList<Card*>*>* columnasActuales, LinkedStack<Card*>* mazoActual, LinkedStack<Card*>* pozoActual) {
+    EstadoGolf(ArrayList<LinkedList<Card*>*>* columnas, LinkedStack<Card*>* mazo, LinkedStack<Card*>* pozo) {
 
        
         columnasEstado = new ArrayList<LinkedList<Card*>*>();
-        for (int i = 0; i < columnasActuales->getSize(); i++) {
-            columnasActuales->goToPos(i);
-            LinkedList<Card*>* listaOriginal = columnasActuales->getElement();
+        for (int i = 0; i < columnas->getSize(); i++) {
+            columnas->goToPos(i);
+            LinkedList<Card*>* listaOriginal = columnas->getElement();
 
             LinkedList<Card*>* listaClonada = new LinkedList<Card*>();
             listaOriginal->goToStart();
@@ -31,24 +31,24 @@ public:
       
         mazoEstado = new LinkedStack<Card*>();
         LinkedStack<Card*> tempMazo;
-        while (!mazoActual->isEmpty()) {
-            tempMazo.push(mazoActual->pop());
+        while (!mazo->isEmpty()) {
+            tempMazo.push(mazo->pop());
         }
         while (!tempMazo.isEmpty()) {
             Card* carta = tempMazo.pop();
-            mazoActual->push(carta);   // Devuelve la carta al original para dejarlo intacto
+            mazo->push(carta);   // Devuelve la carta al original para dejarlo intacto
             mazoEstado->push(carta);    // Guarda la carta en la copia del estado
         }
 
        
         pozoEstado = new LinkedStack<Card*>();
         LinkedStack<Card*> tempPozo;
-        while (!pozoActual->isEmpty()) {
-            tempPozo.push(pozoActual->pop());
+        while (!pozo->isEmpty()) {
+            tempPozo.push(pozo->pop());
         }
         while (!tempPozo.isEmpty()) {
             Card* carta = tempPozo.pop();
-            pozoActual->push(carta);   // Devuelve la carta al original para dejarlo intacto
+            pozo->push(carta);   // Devuelve la carta al original para dejarlo intacto
             pozoEstado->push(carta);    // Guarda la carta en la copia del estado
         }
     }
