@@ -148,6 +148,9 @@
     <ClInclude Include="Card.h" />
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="DNode.h" />
+    <ClInclude Include="EstadoGolf.h" />
+    <ClInclude Include="EstadoSpider.h" />
+    <ClInclude Include="Historial.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedStack.h" />
     <ClInclude Include="List.h" />
