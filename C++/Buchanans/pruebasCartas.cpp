@@ -41,11 +41,12 @@ int main() {
 	int entrada = -1;
 	while (!juego->haGanado() && entrada != 0) {
 		juego->mostrarTablero();
-		if (!juego->hayMovimientosDisponibles()) {
+		if (!juego->hayMovimientosDisponibles() && juego->mazoVacio()) {
 			cout << "No hay movimientos disponibles en las columnas." << endl;
+			cout << "Puntuacion: " << juego->getPuntuacion();
 			break;
 		}
-		cout << "Columna (1-7, 0 para salir): ";
+		cout << "Columna (1-7, 0 para salir, 8 para sacar una carta del mazo): ";
 		cin >> entrada;
 		if (cin.fail()) {
 			cin.clear();
@@ -53,7 +54,8 @@ int main() {
 			entrada = -1;
 			continue;
 		}
-		if (entrada != 0) juego->moverCarta(entrada - 1);
+		if (entrada != 0 && entrada < 8) juego->moverCarta(entrada - 1);
+		if (entrada == 8) juego->sacarCartaMazo();
 	}
 	if (juego->haGanado()) cout << "¡Ganaste!" << endl;
 

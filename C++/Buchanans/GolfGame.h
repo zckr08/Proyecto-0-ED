@@ -14,6 +14,7 @@ private:
     ArrayList<LinkedList<Mazo*>*>* columnas;
     LinkedStack<Card*> mazo;
     LinkedStack<Card*> pozo;
+    int puntuacion;
 
     void impresionBarajas(ArrayList<LinkedList<Mazo*>*>* mazos) {
         for (int i = 0; i < mazos->getSize(); i++) {
@@ -70,6 +71,7 @@ public:
             listaMazo->append(columna);
             columnas->append(listaMazo);
         }
+        puntuacion = 0;
     }
 
     ~GolfGame() {
@@ -210,12 +212,20 @@ public:
     bool mazoVacio() {
         return mazo.isEmpty();
     }
-
+    int getPuntuacion() {
+        int cartasPendientes = 0;
+        columnas->goToStart();
+        for (int i = 0; i < 7; i++) {
+            puntuacion += columnas->getElement()->getElement()->cartas->getSize();
+        }
+        return puntuacion;
+    }
     // para ver como va el jueguito
     void mostrarTablero() {
         cout << "\nPOZO \n";
         if (!pozo.isEmpty()) {
             cout << "Cima del Pozo ->\n";                  // MODIFICADO: sin "->" y con salto de línea
+            if (!pozo.topValue()->up) pozo.topValue()->flip();
             pozo.topValue()->draw();
         }
         else {
@@ -227,6 +237,13 @@ public:
         cout << endl;
         impresionBarajas(columnas);
         cout << "----------------------------------------\n";
+
+        cout << "\nMAZO \n";
         cout << "Cartas restantes en mazo: " << mazo.getSize() << "\n";
+        if (!mazo.isEmpty()) {
+            cout << "Cima del Mazo ->\n";
+            if (!mazo.topValue()->up) mazo.topValue()->flip();
+            mazo.topValue()->draw();
+        }
     }
 };
