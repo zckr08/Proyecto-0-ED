@@ -35,7 +35,7 @@ void mezclarBarajaSpider(Card* baraja[104]) {
     }
 }
 
-int main() {
+int main3() {
 	Card* baraja[104];
 	crearBarajaSpider(baraja);
 	mezclarBarajaSpider(baraja);

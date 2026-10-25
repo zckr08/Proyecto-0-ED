@@ -1,7 +1,7 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\buchanans.cpp",
+        "Source": "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\buchanans.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\iostream",
@@ -129,8 +129,8 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\ucrt\\locale.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\ostream",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\string",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\golfgame.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\card.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\golfgame.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\card.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\windows.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\shared\\winapifamily.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\shared\\winpackagefamily.h",
@@ -343,14 +343,14 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\mcx.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\imm.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\um\\ime_cmodes.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\linkedlist.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\list.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\node.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\linkedstack.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\stack.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\arraylist.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\mazo.h",
-            "c:\\users\\scott\\desktop\\commits\\c++\\buchanans\\spider.h"
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\linkedlist.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\list.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\node.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\linkedstack.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\stack.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\arraylist.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\mazo.h",
+            "c:\\users\\pc01\\source\\repos\\proyecto-0-ed\\c++\\buchanans\\spider.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
