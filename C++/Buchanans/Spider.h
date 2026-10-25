@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
-#include <vector>
 #include <string>
 #include "Card.h"
-#include "DLinkedList.h"
+#include "LinkedList.h"
+#include "ArrayList.h"
+#include "Mazo.h"
 #include "LinkedStack.h"
 
 using namespace std;
@@ -13,27 +14,85 @@ using namespace std;
 
 class Spider {
 private:
-    DLinkedList<Card*> columnas[10]; // 10 columnas
+    ArrayList<LinkedList<Mazo*>*>* columnas; // 10 columnas
     LinkedStack<Card*> mazo;        // Mazo en pila
     int escalerasCompletadas;       // Escaleras completas
     int vecesRepartido;             // Veces repartido
 
+    void impresionBarajas(ArrayList<LinkedList<Mazo*>*>* mazos) {
+        for (int i = 0; i < mazos->getSize(); i++) {
+            mazos->goToPos(i);
+            Mazo* columna = mazos->getElement()->getElement();
+            columna->cartas->goToStart();
+            columna->imprimiendo = false;
+            columna->mazoImpreso = (columna->cartas->getSize() == 0);
+        }
+        bool todasImpresas = false;
+        int cantidadMazos = mazos->getSize();
+        int listos;
+        while (!todasImpresas) {
+            string imprimir = "";
+            for (int i = 0; i < mazos->getSize();i++) {
+                mazos->goToPos(i);
+                Mazo* columna = mazos->getElement()->getElement();
+                string parte = "";
+                if (!columna->mazoImpreso) {
+                    if (!columna->imprimiendo) {
+                        Card* carta = columna->cartas->getElement();
+                        columna->cartas->next();
+                        columna->representacion = carta->representacion;
+                        columna->representacion->goToStart();
+                        columna->imprimiendo = true;
+                    }
+                    parte = columna->representacion->getElement();
+                    columna->representacion->next();
+                    if (columna->representacion->atEnd()) {
+                        columna->imprimiendo = false;
+                        if (columna->cartas->atEnd()) columna->mazoImpreso = true;
+                    }
+                }
+                if (parte == "") parte = "         ";
+                imprimir += parte + "  ";
+            }
+            listos = 0;
+            for (int i = 0; i < mazos->getSize();i++) {
+                mazos->goToPos(i);
+                if (mazos->getElement()->getElement()->mazoImpreso) listos += 1;
+            }
+            if (listos == cantidadMazos) todasImpresas = true;
+            cout << imprimir << endl;
+        }
+    }
+
 public:
     Spider() {
+        columnas = new ArrayList<LinkedList<Mazo*>*>();
+        for (int i = 0; i < 10; i++) {
+            LinkedList<Mazo*>* listaMazo = new LinkedList<Mazo*>();
+            LinkedList<Card*>* listaCartas = new LinkedList<Card*>();
+            Mazo* columna = new Mazo(listaCartas);
+            listaMazo->append(columna);
+            columnas->append(listaMazo);
+        }
         escalerasCompletadas = 0;
         vecesRepartido = 0;
     }
 
     ~Spider() {
-        for (int i = 0; i < 10; i++) {
-            columnas[i].goToStart();
-            while (!columnas[i].atEnd()) {
-                delete columnas[i].getElement();
-                columnas[i].next();
+        for (int c = 0; c < columnas->getSize(); c++) {
+            columnas->goToPos(c);
+            LinkedList<Mazo*>* grupo = columnas->getElement();
+            Mazo* columna = grupo->getElement();
+            columna->cartas->goToStart();
+            while (!columna->cartas->atEnd()) {
+                delete columna->cartas->getElement();
+                columna->cartas->next();
             }
-            columnas[i].clear();
+            delete columna->cartas;
+            delete columna;
+            delete grupo;
         }
-
+        delete columnas;
         while (!mazo.isEmpty()) {
             delete mazo.pop();
         }
@@ -50,7 +109,9 @@ public:
                     cartaActual->unCover();
                     cartaActual->flip();
                 }
-                columnas[col].append(cartaActual);
+                columnas->goToPos(col);
+                LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+                cartas->append(cartaActual);
             }
         }
 
@@ -61,92 +122,122 @@ public:
     }
 
     bool esMovimientoValido(int colOrigen, int colDestino, int cantidadCartas) {
-        if (colOrigen < 0 || colOrigen >= 10 || colDestino < 0 || colDestino >= 10) {
+        if (colOrigen < 0 || colOrigen >= 10 || colDestino < 0 || colDestino >= 10 || colOrigen == colDestino) {   // origen != destino
             return false;
         }
-        if (columnas[colOrigen].getSize() == 0 || cantidadCartas <= 0) {
+        columnas->goToPos(colOrigen);
+        LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+        if (cartas->isEmpty() || cantidadCartas <= 0) {
             return false;
         }
-        if (cantidadCartas > columnas[colOrigen].getSize()) {
+        if (cantidadCartas > cartas->getSize()) {
             return false;
         }
 
-        int tamOrigen = columnas[colOrigen].getSize();
+        int tamOrigen = cartas->getSize();
         int posInicio = tamOrigen - cantidadCartas;
 
+        cartas->goToPos(posInicio);
+        Card* primeraCartaMovida = cartas->getElement();
+        if (!primeraCartaMovida->up) return false;               // debe estar boca arriba
+
         for (int i = 0; i < cantidadCartas - 1; i++) {
-            columnas[colOrigen].goToPos(posInicio + i);
-            Card* cartaActual = columnas[colOrigen].getElement();
-            columnas[colOrigen].goToPos(posInicio + i + 1);
-            Card* cartaSiguiente = columnas[colOrigen].getElement();
+            cartas->goToPos(posInicio + i);
+            Card* cartaActual = cartas->getElement();
+            cartas->goToPos(posInicio + i + 1);
+            Card* cartaSiguiente = cartas->getElement();
 
             if (cartaActual->numero != cartaSiguiente->numero + 1) {
                 return false;
             }
         }
-
-        if (columnas[colDestino].getSize() == 0) {
+        columnas->goToPos(colDestino);
+        LinkedList<Card*>* cartasDestino = columnas->getElement()->getElement()->cartas;
+        if (cartasDestino->isEmpty()) {
             return true;
         }
 
-        columnas[colOrigen].goToPos(posInicio);
-        Card* primeraCartaMovida = columnas[colOrigen].getElement();
-
-        columnas[colDestino].goToEnd();
-        Card* cartaCimaDestino = columnas[colDestino].getElement();
-        if (cartaCimaDestino->numero == primeraCartaMovida->numero + 1) {
-            return true;
+        cartasDestino->goToPos(cartasDestino->getSize() - 1);
+        Card* cartaCimaDestino = cartasDestino->getElement();
+        return cartaCimaDestino->numero == primeraCartaMovida->numero + 1;
+    }
+     
+    // funcion para remover cartas de una escalera completada
+    void retirarEscalera(int col) {
+        columnas->goToPos(col);
+        LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+        cartas->goToPos(cartas->getSize() - 13);               // primera carta de la escalera
+        for (int i = 0; i < 13; i++) {
+            delete cartas->remove();
         }
-        return false;
+        escalerasCompletadas++;
+        if (!cartas->isEmpty()) {                              // la nueva última pasa a descubierta
+            cartas->goToPos(cartas->getSize() - 1);
+            Card* nueva = cartas->getElement();
+            nueva->unCover();
+            if (!nueva->up) nueva->flip();
+        }
     }
 
     void moverCartas(int colOrigen, int colDestino, int cantidadCartas) {
         if (esMovimientoValido(colOrigen, colDestino, cantidadCartas)) {
-            columnas[colOrigen].goToEnd();
-            for (int i = 0; i < cantidadCartas; i++) {
-                columnas[colOrigen].previous();
+            columnas->goToPos(colDestino);
+            LinkedList<Card*>* cartasDestino = columnas->getElement()->getElement()->cartas;
+            columnas->goToPos(colOrigen);
+            LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+            if (!cartasDestino->isEmpty()) {
+                cartasDestino->goToPos(cartasDestino->getSize() - 1);
+                cartasDestino->getElement()->unCover();
             }
+            cartas->goToPos(cartas->getSize() - cantidadCartas);
             for (int i = 0; i < cantidadCartas; i++) {
-                Card* c = columnas[colOrigen].remove();
-                c->unCover();
-                c->flip();
-                columnas[colDestino].append(c);
-                columnas[colOrigen].next();
+                cartasDestino->append(cartas->remove());
             }
+            if (!cartas->isEmpty()) {
+                cartas->goToPos(cartas->getSize() - 1);
+                Card* nueva = cartas->getElement();
+                nueva->unCover();
+                if (!nueva->up) nueva->flip();
+            }
+            if (verificarEscaleraCompleta(colDestino)) retirarEscalera(colDestino);
         }
     }
 
     void repartirMazo() {
         if (mazo.isEmpty()) return;
+        for (int i = 0; i < 10; i++) {                         // no se reparte con columnas vacías
+            columnas->goToPos(i);
+            if (columnas->getElement()->getElement()->cartas->isEmpty()) return;
+        }
         for (int i = 0; i < 10; i++) {
+            columnas->goToPos(i);
+            LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+            cartas->goToPos(cartas->getSize() - 1);
+            cartas->getElement()->unCover();
             if (!mazo.isEmpty()) {
                 Card* c = mazo.pop();
                 c->unCover();
                 c->flip();
-                columnas[i].append(c);
+                cartas->append(c);
             }
         }
+        for (int i = 0; i < 10; i++) {
+            if (verificarEscaleraCompleta(i)) retirarEscalera(i);
+        }
+        vecesRepartido++;
     }
 
     bool verificarEscaleraCompleta(int col) {
-        int revisar = 0;
-        columnas[col].goToStart();
+        columnas->goToPos(col);
+        LinkedList<Card*>* cartas = columnas->getElement()->getElement()->cartas;
+        if (cartas->getSize() < 13) return false;              // MODIFICADO: cubre también la columna vacía
+        int posInicio = cartas->getSize() - 13;                // MODIFICADO: últimas 13, no primeras
         for (int i = 0; i < 13; i++) {
-            if (columnas[col].atEnd()) {
-                columnas[col].goToEnd();
-                return false;
-            }
-
-            if (columnas[col].getElement()->up == false) {
-                columnas[col].goToEnd();
-                return false;
-            }
-
-            revisar += columnas[col].getElement()->numero;
-            columnas[col].next();
+            cartas->goToPos(posInicio + i);
+            Card* c = cartas->getElement();
+            if (!c->up || c->numero != 13 - i) return false;  // MODIFICADO: K, Q, J... hasta A, todas boca arriba
         }
-
-        return (revisar == 91);
+        return true;
     }
 
     bool haGanado() {
@@ -166,79 +257,14 @@ public:
         cout << " ------------------------------------------------------------------------\n\n";
 
         // Cabecera de columnas alineada
-        cout << "  ";
         for (int c = 0; c < 10; c++) {
             string n = to_string(c + 1);
-            if (c < 9) {
-                cout << "  " << n << "    ";
-            }
-            else {
-                cout << "  " << n << "   ";
-            }
+            cout << "    " << n << string(7 - n.size(), ' '); 
         }
         cout << "\n";
 
-        // Vector para almacenar las líneas de texto generadas por cada columna
-        vector<string> lineasColumna[10];
-        int maxLineas = 0;
-
-        for (int c = 0; c < 10; c++) {
-            int tam = columnas[c].getSize();
-            for (int i = 0; i < tam; i++) {
-                columnas[c].goToPos(i);
-                Card* carta = columnas[c].getElement();
-
-                // CASO 1: Carta boca abajo -> Compacta de 1 sola línea (|###|)
-                if (!carta->up) {
-                    lineasColumna[c].push_back("|###|  ");
-                }
-                // CASO 2: Carta boca arriba -> Tamaño completo con cajita de 4 líneas
-                else {
-                    string simboloNum = "";
-                    if (carta->numero == 1) simboloNum = "A";
-                    else if (carta->numero == 11) simboloNum = "J";
-                    else if (carta->numero == 12) simboloNum = "Q";
-                    else if (carta->numero == 13) simboloNum = "K";
-                    else simboloNum = to_string(carta->numero);
-
-                    string cuerpo = "";
-                    if (simboloNum.length() == 1) {
-                        cuerpo = "|" + simboloNum + P + " |  ";
-                    }
-                    else {
-                        cuerpo = "|" + simboloNum + P + "|  ";
-                    }
-
-                    lineasColumna[c].push_back("+---+  ");
-                    lineasColumna[c].push_back(cuerpo);
-                    lineasColumna[c].push_back(cuerpo);
-                    lineasColumna[c].push_back("+---+  ");
-                }
-            }
-            if (lineasColumna[c].size() > maxLineas) {
-                maxLineas = lineasColumna[c].size();
-            }
-        }
-
-        if (maxLineas == 0) {
-            cout << "   [ Tablero Vacio o Inicializando... ]\n";
-            return;
-        }
-
-        // Renderizado horizontal coordinado línea por línea
-        for (int l = 0; l < maxLineas; l++) {
-            cout << "  ";
-            for (int c = 0; c < 10; c++) {
-                if (l < lineasColumna[c].size()) {
-                    cout << lineasColumna[c][l];
-                }
-                else {
-                    cout << "       "; // Espacios de relleno alineados si la columna ya terminó
-                }
-            }
-            cout << "\n";
-        }
-
+        impresionBarajas(columnas);
+        
         cout << "\n ------------------------------------------------------------------------\n";
         cout << "  [1] Mover   [2] Repartir Mazo   [3] Deshacer   [4] Rehacer   [5] Abandonar\n";
         cout << " ------------------------------------------------------------------------\n";

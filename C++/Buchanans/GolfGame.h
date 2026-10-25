@@ -104,7 +104,6 @@ public:
             columnas->goToPos(col);
             for (int fila = 0; fila < 5; fila++) {
                 Card* cartaActual = baraja[i++];
-                cartaActual->unCover();
                 cartaActual->flip();
                 if (fila == 4) cartaActual->unCover();
                 columnas->getElement()->getElement()->cartas->append(cartaActual);
@@ -158,6 +157,7 @@ public:
                 cartas->getElement()->unCover();
             }
             std::cout << "¡Movimiento exit de exitante!\n";
+            puntuacion -= 1;
         }
         else {
             std::cout << "Movimiento no válido. La carta debe ser una unidad mayor o menor que la del pozo monguis.\n";
@@ -173,7 +173,6 @@ public:
 
         Card* cartaMazo = mazo.pop();
         cartaMazo->flip();
-        cartaMazo->unCover();
         pozo.push(cartaMazo);
         cout << "Se ha sacado una nueva carta del mazo al pozo.\n";
     }
@@ -222,6 +221,7 @@ public:
     }
     // para ver como va el jueguito
     void mostrarTablero() {
+        system("cls");
         cout << "\nPOZO \n";
         if (!pozo.isEmpty()) {
             cout << "Cima del Pozo ->\n";                  // MODIFICADO: sin "->" y con salto de línea

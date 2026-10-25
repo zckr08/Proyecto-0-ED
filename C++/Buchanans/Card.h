@@ -35,7 +35,7 @@ public:
 	}
 
 	void unCover() {
-		cover = false;
+		cover = !cover;
 		repre();
 	}
 

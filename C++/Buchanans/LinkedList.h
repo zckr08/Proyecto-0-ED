@@ -55,7 +55,7 @@ public:
 		Node<E>* temp = current->next->next;
 		delete current->next;
 		current->next = temp;
-		if (size == 1)
+		if (temp == nullptr)
 			tail = current;
 		size--;
 		return result;

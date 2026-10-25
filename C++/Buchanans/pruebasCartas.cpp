@@ -30,7 +30,7 @@ void mezclarBaraja(Card* baraja[52]) {
 	}
 }
 
-int main() {
+int main2() {
 	Card* baraja[52];
 	crearBaraja(baraja);
 	mezclarBaraja(baraja);
@@ -60,4 +60,5 @@ int main() {
 	if (juego->haGanado()) cout << "¡Ganaste!" << endl;
 
 	delete juego;   // el destructor libera las 52 cartas, no hagas delete baraja[i]
+	return 0;
 }

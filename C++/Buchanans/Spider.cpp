@@ -34,3 +34,53 @@ void mezclarBarajaSpider(Card* baraja[104]) {
         baraja[num2] = temp;
     }
 }
+
+int main() {
+	Card* baraja[104];
+	crearBarajaSpider(baraja);
+	mezclarBarajaSpider(baraja);
+
+	Spider* juego = new Spider();
+	juego->iniciarJuego(baraja);
+
+	int opcion = 0;
+	while (!juego->haGanado() && opcion != 5) {
+		juego->mostrarTablero();
+		cout << "Opcion: ";
+		cin >> opcion;
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			opcion = 0;
+			continue;
+		}
+		if (opcion == 1) {
+			int origen, destino, cantidad;
+			cout << "Columna origen (1-10): ";
+			cin >> origen;
+			cout << "Columna destino (1-10): ";
+			cin >> destino;
+			cout << "Cantidad de cartas: ";
+			cin >> cantidad;
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				continue;
+			}
+			if (juego->esMovimientoValido(origen - 1, destino - 1, cantidad)) {
+				juego->moverCartas(origen - 1, destino - 1, cantidad);
+			}
+			else {
+				cout << "Movimiento no valido." << endl;
+				system("pause");
+			}
+		}
+		else if (opcion == 2) {
+			juego->repartirMazo();
+		}
+	}
+	if (juego->haGanado()) cout << "¡Ganaste!" << endl;
+
+	delete juego;
+	return 0;
+}
