@@ -12,7 +12,7 @@ using std::getline;
 using std::cin;
 using namespace std;
 
-void crearBaraja1(Card* baraja[52]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
+void crearBarajaGolf(Card* baraja[52]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
 	int b = 0;
 	for (int t = 0; t < 4; t++) {
 		for (int i = 1; i < 14; i++) {
@@ -22,27 +22,40 @@ void crearBaraja1(Card* baraja[52]) { //funcion para crear una baraja estandard 
 	}
 }
 
-void deleteBaraja1(Card* baraja[52]) { //borrar la baraja porque esta en memoria dinamica
-	for (int i = 0; i < 52; i++)
-		delete baraja[i];
+// Mezcla la baraja del Golf de forma aleatoria
+void mezclarBarajaGolf(Card* baraja[52]) {
+	srand(static_cast<unsigned int>(time(nullptr)));
+	for (int i = 0; i < 1000; i++) {
+		int num1 = rand() % 52;
+		int num2 = rand() % 52;
+
+		Card* temp = baraja[num1];
+		baraja[num1] = baraja[num2];
+		baraja[num2] = temp;
+	}
 }
 
-
-void crearBaraja2(Card* baraja[104]) { //funcion para crear una baraja estandard de 52 cardas, mantener para la galeria del menu principal pls
-	int index = 0;
-	for (int m = 0; m < 2; m++) { // 2 mazos de 52 cartas para Spider
-		for (int t = 0; t < 4; t++) {
-			for (int i = 1; i < 14; i++) {
-				baraja[index] = new Card(i, t);
-				index++;
-			}
+void crearBarajaSpider(Card* baraja[104]) {
+	int b = 0;
+	for (int t = 0; t < 8; t++) {
+		for (int i = 1; i < 14; i++) {
+			baraja[b] = new Card(i, 3); // Palo 3 (picas)
+			b++;
 		}
 	}
 }
 
-void deleteBaraja2(Card* baraja[104]) { //borrar la baraja porque esta en memoria dinamica
-	for (int i = 0; i < 104; i++)
-		delete baraja[i];
+// Mezcla la baraja del Spider de forma aleatoria
+void mezclarBarajaSpider(Card* baraja[104]) {
+	srand(static_cast<unsigned int>(time(nullptr)));
+	for (int i = 0; i < 1000; i++) {
+		int num1 = rand() % 104;
+		int num2 = rand() % 104;
+
+		Card* temp = baraja[num1];
+		baraja[num1] = baraja[num2];
+		baraja[num2] = temp;
+	}
 }
 
 int main() {	//ahora es el menu principal
@@ -55,18 +68,15 @@ int main() {	//ahora es el menu principal
 			cout << "|  ELIGA SU MODO DE JUEGO:                                                              |" << endl;
 			cout << "|     1. SOLITARIO GOLF                                                                 |" << endl;
 			cout << "|     2. SOLITARIO SPIDER                                                               |" << endl;
-			cout << "+---------------------------------------------------------------------------------------+" << endl;
-			cout << "|  EXTRAS:                                                                              |" << endl;
-			cout << "|     3. GALERIA DE CARTAS                                                              |" << endl; //esto como un extra, ademas que me
 			cout << "+---------------------------------------------------------------------------------------+" << endl; //sirvio para verificar si el menu funciona correctamente
 			cout << "|  OPCION:                                                                              |" << endl;
-			cout << "|     4. Salir                                                                          |" << endl;
+			cout << "|     3. Salir                                                                          |" << endl;
 			cout << "+---------------------------------------------------------------------------------------+" << endl;
 
 			do {
 				cout << "OPCION: ";
 				getline(cin, opcion);
-			} while (opcion != "1" && opcion != "2" && opcion != "3" && opcion != "4");
+			} while (opcion != "1" && opcion != "2" && opcion != "3");
 
 
 			if (opcion == "1") {
@@ -75,7 +85,8 @@ int main() {	//ahora es el menu principal
 				GolfGame juegoGolf;
 
 				Card* barajaGolf[52];
-				crearBaraja1(barajaGolf);
+				crearBarajaGolf(barajaGolf);
+				mezclarBarajaGolf(barajaGolf);
 				juegoGolf.iniciarJuego(barajaGolf);
 
 				string opcionGolf = "";
@@ -109,9 +120,8 @@ int main() {	//ahora es el menu principal
 						cout << "Opcion Rehacer en desarrollo. Presione ENTER para continuar...";
 						string p; getline(cin, p);
 					}
-				} while (opcionGolf != "5" && !juegoGolf.haGanado());
+				} while (opcionGolf != "5" && !juegoGolf.haGanado() && (juegoGolf.hayMovimientosDisponibles() || !juegoGolf.mazoVacio()));
 
-				deleteBaraja1(barajaGolf);
 				system("cls");
 			}
 			else if (opcion == "2") {
@@ -120,8 +130,8 @@ int main() {	//ahora es el menu principal
 
 				// Crear y rellenar la baraja de 104 cartas para Spider
 				Card* barajaSpider[104];
-				crearBaraja2(barajaSpider);
-
+				crearBarajaSpider(barajaSpider);
+				mezclarBarajaSpider(barajaSpider);
 				juegoSpider.iniciarJuego(barajaSpider);
 
 				// BUCLE INTERACTIVO PARA JUGAR SPIDER
@@ -165,46 +175,19 @@ int main() {	//ahora es el menu principal
 
 				} while (opcionSpider != "5" && !juegoSpider.haGanado());
 
-				// Limpiar memoria de la baraja Spider
-				deleteBaraja2(barajaSpider);
 
 				system("cls");
 			}
-			else if (opcion == "3") { //esto es solo para probar la funcionalidad del menu, solo imprime las cartas para hacer una especie de galeria
-				system("cls");
-				Card* baraja[52];
-				crearBaraja1(baraja);
-				cout << "+---------------------------------------------------------------------------------------+" << endl;
-				cout << "|                                   GALERIA DE CARTAS                                   |" << endl;
-				cout << "+---------------------------------------------------------------------------------------+" << endl;
-				for (int i = 0; i < 52; i++) {
-					baraja[i]->unCover();
-					baraja[i]->flip();
-					baraja[i]->draw();
-				}
-				baraja[0]->flip();
-				baraja[0]->draw();
-				deleteBaraja1(baraja);
-				cout << "+---------------------------------------------------------------------------------------+" << endl;
-				cout << "|  OPCION:                                                                              |" << endl;
-				cout << "|     1. VOLVER                                                                         |" << endl;
-				cout << "+---------------------------------------------------------------------------------------+" << endl;
-				do {
-					cout << "OPCION: ";
-					getline(cin, opcion);
-				} while (opcion != "1");
-				system("cls");
-			}
 
 
-			else if (opcion == "4") {
+			else if (opcion == "3") {
 				system("cls");
 				cout << "+---------------------------------------------------------------------------------------+" << endl;
 				cout << "|                          GRACIAS POR USAR, QUE DIOS LE BENDIGA                        |" << endl;
 				cout << "+---------------------------------------------------------------------------------------+" << endl;
 				return 0;
 			}
-		} while (opcion != "4");
+		} while (opcion != "3");
 	}
 	catch (exception& e) {
 		cout << "Ha ocurrido un error relacionado con: " << e.what() << "\n";

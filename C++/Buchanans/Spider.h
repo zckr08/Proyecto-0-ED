@@ -270,8 +270,3 @@ public:
         cout << " ------------------------------------------------------------------------\n";
     }
 };
-
-// Declaraciones de baraja Spider
-void crearBarajaSpider(Card* baraja[104]);
-void deleteBarajaSpider(Card* baraja[104]);
-void mezclarBarajaSpider(Card* baraja[104]);
