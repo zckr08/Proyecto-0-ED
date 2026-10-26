@@ -25,6 +25,21 @@ public:
 		repre();
 	}
 
+	Card(const Card& carta) {
+		numero = carta.numero;
+		palo = carta.palo;
+		up = carta.up;
+		cover = carta.cover;
+
+		representacion = new LinkedList<string>();
+		carta.representacion->goToStart();
+
+		while (!carta.representacion->atEnd()) {
+			representacion->append(carta.representacion->getElement());
+			carta.representacion->next();
+		}
+	}
+
 	~Card() {
 		delete representacion;
 	}

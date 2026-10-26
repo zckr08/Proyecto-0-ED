@@ -269,4 +269,29 @@ public:
         cout << "  [1] Mover   [2] Repartir Mazo   [3] Deshacer   [4] Rehacer   [5] Abandonar\n";
         cout << " ------------------------------------------------------------------------\n";
     }
+    ArrayList<LinkedList<Mazo*>*>* getColumnas() {
+        return columnas;
+    }
+    LinkedStack<Card*>* getMazo(){
+        LinkedStack<Card*>* mazoC = new LinkedStack<Card*>(mazo);
+        return mazoC;
+    }
+    int getEscalerasCompletadas() {
+        return escalerasCompletadas;
+    }
+    int getVecesRepartido() {
+        return vecesRepartido;
+    }
+    void setColumnas(ArrayList<LinkedList<Mazo*>*>* columnas) {
+        this->columnas = columnas;
+    }
+    void setMazo(LinkedStack<Card*>* mazoC) {
+        mazo = *mazoC;
+    }
+    void setEscalerasCompletadas(int escalerasCompletadas) {
+        this->escalerasCompletadas = escalerasCompletadas;
+    }
+    void setVecesRepartido(int vecesRepartido) {
+        this->vecesRepartido = vecesRepartido;
+    }
 };

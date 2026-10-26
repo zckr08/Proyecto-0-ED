@@ -4,8 +4,12 @@
 #include <exception>
 #include <string>
 #include "GolfGame.h"
+#include "EstadoGolf.h"
 #include "Card.h"
 #include "Spider.h"
+#include "EstadoSpider.h"
+#include "Historial.h"
+
 
 using std::endl;
 using std::getline;
@@ -58,6 +62,30 @@ void mezclarBarajaSpider(Card* baraja[104]) {
 	}
 }
 
+void guardarEstadoSpider(Spider& juego, Historial<EstadoSpider*>& historial){
+	EstadoSpider *estadoNuevo = new EstadoSpider(juego.getColumnas(), juego.getMazo(), juego.getEscalerasCompletadas(), juego.getVecesRepartido());
+	historial.guardarEstado(estadoNuevo);
+}
+
+void guardarEstadoGolf(GolfGame& juego, Historial<EstadoGolf*>& historial) {
+	EstadoGolf *estadoNuevo = new EstadoGolf(juego.getColumnas(), juego.getMazo(), juego.getPozo(), juego.getPuntuacionA());
+	historial.guardarEstado(estadoNuevo);
+}
+
+void cargarEstadoSpider(Spider& juego, EstadoSpider& estado) {
+	juego.setColumnas(estado.columnasEstado);
+	juego.setMazo(estado.mazoEstado);
+	juego.setEscalerasCompletadas(estado.escalerasCompletadas);
+	juego.setVecesRepartido(estado.vecesRepartido);
+}
+
+void cargarEstadoGolf(GolfGame& juego, EstadoGolf& estado) {
+	juego.setColumnas(estado.columnasEstado);
+	juego.setMazo(estado.mazoEstado);
+	juego.setPozo(estado.pozoEstado);
+	juego.setPuntuacion(estado.puntuacion);
+}
+
 int main() {	//ahora es el menu principal
 	try {
 		string opcion;
@@ -81,14 +109,13 @@ int main() {	//ahora es el menu principal
 
 			if (opcion == "1") {
 				system("cls"); //esto es para borrar todos que ya estaba impreso en la pantalla, para mantener el orden. Siempre ponerlo antes y despues de imprimir algo, para el orden
-
+				Historial<EstadoGolf*> historial = Historial<EstadoGolf*>();
 				GolfGame juegoGolf;
-
 				Card* barajaGolf[52];
 				crearBarajaGolf(barajaGolf);
 				mezclarBarajaGolf(barajaGolf);
 				juegoGolf.iniciarJuego(barajaGolf);
-
+				guardarEstadoGolf(juegoGolf, historial);
 				string opcionGolf = "";
 				do {
 					juegoGolf.mostrarTablero();
@@ -103,6 +130,7 @@ int main() {	//ahora es el menu principal
 						try {
 							int orig = stoi(colO) -1;
 							juegoGolf.moverCarta(orig);
+							guardarEstadoGolf(juegoGolf, historial);
 						}
 						catch (...) {
 							cout << "Entrada invalida. Presione ENTER para continuar...";
@@ -111,14 +139,17 @@ int main() {	//ahora es el menu principal
 					}
 					else if (opcionGolf == "2") {
 						juegoGolf.sacarCartaMazo();
+						guardarEstadoGolf(juegoGolf, historial);
 					}
 					else if (opcionGolf == "3") {
-						cout << "Opcion Deshacer en desarrollo. Presione ENTER para continuar...";
-						string p; getline(cin, p);
+						EstadoGolf* estado = historial.deshacer();
+						cargarEstadoGolf(juegoGolf, *estado);
+						cout << "Se ha retrocedido un estado.";
 					}
 					else if (opcionGolf == "4") {
-						cout << "Opcion Rehacer en desarrollo. Presione ENTER para continuar...";
-						string p; getline(cin, p);
+						EstadoGolf* estado = historial.rehacer();
+						cargarEstadoGolf(juegoGolf, *estado);
+						cout << "Se ha avanzado un estado.";
 					}
 				} while (opcionGolf != "5" && !juegoGolf.haGanado() && (juegoGolf.hayMovimientosDisponibles() || !juegoGolf.mazoVacio()));
 

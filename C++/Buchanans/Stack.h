@@ -4,8 +4,6 @@ template <typename E>
 class Stack {
 public:
 	Stack() {}
-	Stack(const Stack<E>&) = delete;
-	void operator = (const Stack<E>&) = delete;
 	virtual ~Stack() {}
 	virtual void push(E element) = 0;
 	virtual E pop() = 0;

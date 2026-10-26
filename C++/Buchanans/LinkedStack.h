@@ -18,8 +18,23 @@ public:
     LinkedStack() {
         top = nullptr;
         size = 0;
+    } 
+    LinkedStack(const LinkedStack& stack) {
+        top = nullptr;
+        size = 0;
+        Node<E>* temp = stack.top;
+        Node<E>* anterior = nullptr;
+        while (temp != nullptr) {
+            Node<E>* nuevo = new Node<E>(temp->element);
+            if (top == nullptr)
+                top = nuevo;
+            else
+                anterior->next = nuevo;
+            anterior = nuevo;
+            temp = temp->next;
+            size++;
+        }
     }
-
     ~LinkedStack() {
         clear();
     }
