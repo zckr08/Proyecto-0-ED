@@ -325,7 +325,7 @@ public:
     void mostrarTablero() {
         system("cls");
         cout << "========================================================================\n";
-        cout << "  RONDA ACTUAL: " << rondaActual << " / 9   |   PUNTAJE ACUMULADO: " << puntajeAcumulado << "\n";
+        cout << "  RONDA ACTUAL: " << getRondaActual() << " / 9   |   PUNTAJE ACUMULADO: " << getPuntuacion() << "\n";
         cout << "========================================================================\n";
 
         cout << "\nPOZO \n";
