@@ -13,6 +13,7 @@ private:
 public:
     Historial(const Historial<E>& otro) = delete;
     Historial<E>& operator=(const Historial<E>& otro) = delete;
+
     Historial() {
         listaEstados = new DLinkedList<E>();
         indiceActual = -1;
@@ -21,13 +22,13 @@ public:
     ~Historial() {
         while (listaEstados->getSize() > 0) {
             listaEstados->goToPos(listaEstados->getSize() - 1);
-            delete listaEstados->remove();                 // libera el estado, no solo el nodo
+            delete listaEstados->remove();
         }
         delete listaEstados;
     }
 
     void guardarEstado(E nuevoEstado) {
-        // borra y libera solo lo que está delante del indice
+        // Borra los estados adelantados (si se hizo deshacer y luego un nuevo movimiento)
         while (listaEstados->getSize() > indiceActual + 1) {
             listaEstados->goToPos(listaEstados->getSize() - 1);
             delete listaEstados->remove();
@@ -36,8 +37,9 @@ public:
         indiceActual = listaEstados->getSize() - 1;
     }
 
-   
     E deshacer() {
+        // CORRECCIÓN: Permite retroceder siempre que el índice sea mayor a 0, 
+        // llegando exactamente hasta el estado inicial (índice 0).
         if (indiceActual > 0) {
             indiceActual--;
             listaEstados->goToPos(indiceActual);
@@ -48,6 +50,7 @@ public:
     }
 
     E rehacer() {
+        // Permite avanzar si hay estados por delante en el historial
         if (indiceActual < listaEstados->getSize() - 1) {
             indiceActual++;
             listaEstados->goToPos(indiceActual);
@@ -55,16 +58,6 @@ public:
         }
 
         throw runtime_error("No hay estados siguientes");
-    }
-
-    E seleccionarEstado() {
-        while (listaEstados->getSize() > indiceActual + 1) {
-            listaEstados->goToPos(listaEstados->getSize() - 1);
-            delete listaEstados->remove();
-        }
-
-        listaEstados->goToPos(indiceActual);
-        return listaEstados->getElement();
     }
 
     int getIndiceActual() { return indiceActual; }

@@ -7,7 +7,11 @@
 #include "ArrayList.h"
 #include "Mazo.h"
 
-// guarda una copia del tablero del golf en un momento, para deshacer/rehacer
+using std::cout;
+using std::endl;
+using std::string;
+using std::ostream;
+
 class EstadoGolf {
 public:
     ArrayList<LinkedList<Mazo*>*>* columnasEstado;
@@ -15,10 +19,11 @@ public:
     LinkedStack<Card*>* pozoEstado;
     int puntuacion;
 
+    // Saca una "foto" del juego: copia columnas, mazo y pozo carta por carta.
+    // Así lo que pase después en el juego no cambia esta foto.
     EstadoGolf(ArrayList<LinkedList<Mazo*>*>* columnas, LinkedStack<Card*>* mazo, LinkedStack<Card*>* pozo, int puntuacion) {
         this->puntuacion = puntuacion;
 
-        // copia las columnas, con la misma estructura que GolfGame (lista con un Mazo)
         columnasEstado = new ArrayList<LinkedList<Mazo*>*>();
         for (int i = 0; i < columnas->getSize(); i++) {
             columnas->goToPos(i);
@@ -27,7 +32,7 @@ public:
             listaOriginal->goToStart();
             while (!listaOriginal->atEnd()) {
                 Card* cartaOriginal = listaOriginal->getElement();
-                Card* cartaCopia = new Card(*cartaOriginal);   // copia de la carta, no el mismo puntero
+                Card* cartaCopia = new Card(*cartaOriginal);
                 listaClonada->append(cartaCopia);
                 listaOriginal->next();
             }
@@ -36,7 +41,7 @@ public:
             columnasEstado->append(grupo);
         }
 
-        // copia el mazo: se pasa a una pila temporal para no invertir el orden
+        // Pasamos el mazo a una pila temporal y de vuelta para copiarlo sin cambiar su orden.
         mazoEstado = new LinkedStack<Card*>();
         LinkedStack<Card*> tempMazo;
         while (!mazo->isEmpty()) {
@@ -44,12 +49,12 @@ public:
         }
         while (!tempMazo.isEmpty()) {
             Card* cartaOriginal = tempMazo.pop();
-            mazo->push(cartaOriginal);                  // devuelve la carta al mazo original
+            mazo->push(cartaOriginal);
             Card* cartaCopia = new Card(*cartaOriginal);
             mazoEstado->push(cartaCopia);
         }
 
-        // copia el pozo, igual que el mazo
+        // Lo mismo que con el mazo, pero para el pozo.
         pozoEstado = new LinkedStack<Card*>();
         LinkedStack<Card*> tempPozo;
         while (!pozo->isEmpty()) {
@@ -57,13 +62,14 @@ public:
         }
         while (!tempPozo.isEmpty()) {
             Card* cartaOriginal = tempPozo.pop();
-            pozo->push(cartaOriginal);                  // devuelve la carta al pozo original
+            pozo->push(cartaOriginal);
             Card* cartaCopia = new Card(*cartaOriginal);
             pozoEstado->push(cartaCopia);
         }
     }
 
-    // el estado es dueño de sus copias, asi que las libera todas
+    // Borra todas las cartas copiadas y las estructuras de la foto.
+    // Se hace a mano porque las listas solo guardan punteros.
     ~EstadoGolf() {
         for (int i = 0; i < columnasEstado->getSize(); i++) {
             columnasEstado->goToPos(i);
@@ -71,7 +77,7 @@ public:
             Mazo* columna = grupo->getElement();
             columna->cartas->goToStart();
             while (!columna->cartas->atEnd()) {
-                delete columna->cartas->getElement();   // primero las cartas
+                delete columna->cartas->getElement();
                 columna->cartas->next();
             }
             delete columna->cartas;
@@ -88,7 +94,9 @@ public:
         }
         delete pozoEstado;
     }
-    friend std::ostream& operator<<(std::ostream& os, const EstadoGolf& estado) {
+
+    // Permite imprimir el estado con cout, mostrando solo la puntuación.
+    friend ostream& operator<<(ostream& os, const EstadoGolf& estado) {
         os << "Puntuacion: " << estado.puntuacion;
         return os;
     }

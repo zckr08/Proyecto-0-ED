@@ -7,7 +7,11 @@
 #include "LinkedStack.h"
 #include "Mazo.h"
 
-// guarda una copia del tablero del spider en un momento, para deshacer/rehacer
+using std::cout;
+using std::endl;
+using std::string;
+using std::ostream;
+
 class EstadoSpider {
 public:
     ArrayList<LinkedList<Mazo*>*>* columnasEstado;
@@ -15,11 +19,12 @@ public:
     int escalerasCompletadas;
     int vecesRepartido;
 
+    // Saca una "foto" del juego: copia las columnas y el mazo carta por carta,
+    // y guarda cuántas escaleras van y cuántas veces se ha repartido.
     EstadoSpider(ArrayList<LinkedList<Mazo*>*>* columnas, LinkedStack<Card*>* mazo, int escaleras, int repartido) {
         escalerasCompletadas = escaleras;
         vecesRepartido = repartido;
 
-        // copia las columnas, con la misma estructura que Spider (lista con un Mazo)
         columnasEstado = new ArrayList<LinkedList<Mazo*>*>();
         for (int i = 0; i < columnas->getSize(); i++) {
             columnas->goToPos(i);
@@ -28,7 +33,7 @@ public:
             listaOriginal->goToStart();
             while (!listaOriginal->atEnd()) {
                 Card* cartaOriginal = listaOriginal->getElement();
-                Card* cartaCopia = new Card(*cartaOriginal);   // copia de la carta, no el mismo puntero
+                Card* cartaCopia = new Card(*cartaOriginal);
                 listaClonada->append(cartaCopia);
                 listaOriginal->next();
             }
@@ -37,7 +42,7 @@ public:
             columnasEstado->append(grupo);
         }
 
-        // copia el mazo: se pasa a una pila temporal para no invertir el orden
+        // Pasamos el mazo a una pila temporal y de vuelta para copiarlo sin cambiar su orden.
         mazoEstado = new LinkedStack<Card*>();
         LinkedStack<Card*> tempMazo;
         while (!mazo->isEmpty()) {
@@ -45,13 +50,14 @@ public:
         }
         while (!tempMazo.isEmpty()) {
             Card* carta = tempMazo.pop();
-            mazo->push(carta);                  // devuelve la carta al mazo original
+            mazo->push(carta);
             Card* cartaCopia = new Card(*carta);
             mazoEstado->push(cartaCopia);
         }
     }
 
-    // el estado es dueño de sus copias, asi que las libera todas
+    // Borra todas las cartas copiadas y las estructuras de la foto.
+    // Se hace a mano porque las listas solo guardan punteros.
     ~EstadoSpider() {
         for (int i = 0; i < columnasEstado->getSize(); i++) {
             columnasEstado->goToPos(i);
@@ -59,7 +65,7 @@ public:
             Mazo* columna = grupo->getElement();
             columna->cartas->goToStart();
             while (!columna->cartas->atEnd()) {
-                delete columna->cartas->getElement();   // primero las cartas
+                delete columna->cartas->getElement();
                 columna->cartas->next();
             }
             delete columna->cartas;
@@ -72,7 +78,9 @@ public:
         }
         delete mazoEstado;
     }
-    friend std::ostream& operator<<(std::ostream& os, const EstadoSpider& estado) {
+
+    // Permite imprimir el estado con cout, mostrando escaleras y repartos.
+    friend ostream& operator<<(ostream& os, const EstadoSpider& estado) {
         os << "Escaleras completadas: " << estado.escalerasCompletadas;
         os << ", Veces repartido: " << estado.vecesRepartido;
         return os;
